@@ -1,6 +1,11 @@
+.text-area{
+position: fixed;
+margin-bottom: 10px;
+}
 .text{
-  margin-inline-start: 50px;
+  /* margin-inline-start: 50px; */
   transition : 2000px;
+
 }
 
 .text mat-form-field{

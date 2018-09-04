@@ -2,6 +2,30 @@ div.b {
     float: left;
     
 }
+.text-area{
+  position: fixed;
+  bottom: 0px;
+  margin-right: auto;
+  margin-left: auto;
+width:4000px;
+}
+.right {
+  margin-right:30px;
+  float: right;
+  width: 250px;
+
+  padding: 10px;
+}
+.msg-area{
+  float: left;
+  margin-left: 325px;
+  margin-top:25px;
+  
+}
+
+
+
+
 
  
  
@@ -16,6 +40,7 @@ div.b {
     max-width: 4000px;
     
   }
+
   
   .card-header-image {
     background-image: url('https://www.professionalwriter.com.au/wp-content/uploads/2016/03/Business-lady-small-1024x682.jpg');
@@ -23,13 +48,17 @@ div.b {
   }
 
   .text{
-    margin-inline-start: 50px;
+    margin-inline-start: 300px;
     transition : 2000px;
+    width: 2000px;
+    
   }
   
   .text mat-form-field{
     margin-inline-start: 15px;
     margin-inline-end: 15px;
+    width: 1300px;
+    
   }
   
   .text mat-icon{
