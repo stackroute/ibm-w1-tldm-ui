@@ -3,19 +3,27 @@ import { NgModule } from '@angular/core';
 import {MatInputModule} from '@angular/material/input';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { TextareaComponent } from './textarea/textarea.component';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
 
+import {  MatCheckboxModule,   MatTooltipModule } from '@angular/material';
+import { MainNavComponent } from './main-nav/main-nav.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
-    TextareaComponent
+
+    TextareaComponent,
+    MainNavComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+
     LayoutModule,
     MatToolbarModule,
     MatButtonModule,
@@ -23,7 +31,16 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, Mat
     MatIconModule,
     MatListModule,
     NoopAnimationsModule,
-    MatInputModule
+    MatInputModule,
+
+    MatButtonModule,
+    MatCheckboxModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]
