@@ -1,0 +1,13 @@
+.text{
+  margin-inline-start: 50px;
+  transition : 2000px;
+}
+
+.text mat-form-field{
+  margin-inline-start: 15px;
+  margin-inline-end: 15px;
+}
+
+.text mat-icon{
+  size: 10px;
+}
