@@ -1,101 +1,76 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav
-    #drawer
-    class="sidenav"
-    fixedInViewport="true"
-    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-    [mode]="(isHandset$ | async) ? 'over' : 'side'"
-    [opened]="!(isHandset$ | async)">
+    <mat-sidenav
+            #drawer
+            class="sidenav"
+            fixedInViewport="true"
+            [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+            [mode]="(isHandset$ | async) ? 'over' : 'side'"
+            [opened]="!(isHandset$ | async)">
+        <div class="header-container">
+            <mat-toolbar>
+                <strong>
+                    COMMUNITY_NAME
+                </strong></mat-toolbar>
+            <mat-icon>build</mat-icon>
+        </div>
 
+        <br>
 
-    <div class="header-container">
-    
-   <mat-toolbar>
-     <strong>
-        COMMUNITY_NAME
-     </strong></mat-toolbar>
-   <mat-icon>build</mat-icon>
-  
-   
-    </div><br>
+        <div class="container-channel">
+            <mat-nav-list>
+                <!--<mat-icon>add_circle_outline</mat-icon>-->
+                <strong>
+                    <a mat-list-item>
+                        CHANNELS
+                        <mat-icon>add_circle_outline</mat-icon>
+                    </a>
+                </strong>
+                <a mat-list-item href="#">Channel 1</a>
+                <a mat-list-item href="#">Channel 2</a>
+                <a mat-list-item href="#">Channel 3</a>
+            </mat-nav-list>
+        </div>
 
-    
+        <br>
+        <br>
 
-<div class="container-channel">
+        <div class="container-people">
+            <mat-nav-list>
+                <strong>
+                    <a mat-list-item>
+                        PEOPLES
+                        <mat-icon>add_circle_outline</mat-icon>
+                    </a>
+                </strong>
+                <a mat-list-item href="#">Contact 1</a>
+                <a mat-list-item href="#">Contact 2</a>
+                <a mat-list-item href="#">Contact 3</a>
+            </mat-nav-list>
+        </div>
+    </mat-sidenav>
 
-    <mat-nav-list>
-     
+    <mat-sidenav-content>
+        <mat-toolbar>
+            <button
+                    type="button"
+                    aria-label="Toggle sidenav"
+                    mat-icon-button
+                    (click)="drawer.toggle()"
+                    *ngIf="isHandset$ | async">
+                <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+            </button>
+            <span>Recipient Name</span>
 
+            <div><span>  </span>{{name}}</div>
 
-
-     
-     <!--<mat-icon>add_circle_outline</mat-icon>-->
-
-
-     <strong><a mat-list-item>CHANNELS
-      <mat-icon>add_circle_outline</mat-icon>
-     </a></strong>
-    
-
-     
-    
-   
-     
-
-  <a mat-list-item href="#">Channel 1</a>
-  <a mat-list-item href="#">Channel 2</a>
-  <a mat-list-item href="#">Channel 3</a>
-
-  </mat-nav-list>
-  </div>
-
-  <br><br>
-
-  <div class="container-people">
-   <mat-nav-list>
-      
-     <strong><a mat-list-item>PEOPLES
-      <mat-icon>add_circle_outline</mat-icon>
-     </a></strong>
-    
-
-      <a mat-list-item href="#">Contact 1</a>
-      <a mat-list-item href="#">Contact 2</a>
-      <a mat-list-item href="#">Contact 3</a>
-    </mat-nav-list>
-    </div>
-  </mat-sidenav>
-  
-  <mat-sidenav-content>
-    <mat-toolbar>
-      <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-      </button>
-      <span>Recipient Name</span>
-
-      
-        <div><span>  </span>{{name}}</div>
-     
-        <span class="example-spacer"></span>
-        <mat-icon matTooltip="#Search">search</mat-icon>
-     
-     
-        <mat-icon   matTooltip="#Settings">settings</mat-icon>
-     
-        <mat-icon matTooltip="#More Items">more_vert</mat-icon>
-     
-         
-      
-
-    </mat-toolbar>
-    <ng-content></ng-content>
-    <!-- Add Content Here -->
-  </mat-sidenav-content>
+            <span class="example-spacer"></span>
+            <mat-icon matTooltip="Search">search</mat-icon>
+            <mat-icon matTooltip="Settings">settings</mat-icon>
+            <mat-icon matTooltip="More Items">more_vert</mat-icon>
+        </mat-toolbar>
+        <ng-content></ng-content>
+        <!-- Add Content Here -->
+    </mat-sidenav-content>
 </mat-sidenav-container>
 
 

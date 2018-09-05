@@ -1,0 +1,13 @@
+.mat-toolbar {
+    position: fixed;
+    width: 87%; /*fix this*/
+    top: 0px;
+}
+
+.icon {
+    padding: 0 14px;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}

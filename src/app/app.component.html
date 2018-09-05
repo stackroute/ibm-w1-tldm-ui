@@ -1,3 +1,16 @@
-
-<app-main-nav></app-main-nav>
-<app-integration></app-integration>
+<mat-sidenav-container class="main-component-container">
+    <mat-sidenav mode="side" opened class="sideNav">
+        <h3>
+            <button class="mat-h1" mat-button [matMenuTriggerFor]="menu"><< Community name >></button>
+            <mat-menu #menu="matMenu">
+                <!--implement for loop for multiple workspaces-->
+                <button mat-menu-item><< Community name >></button>
+            </mat-menu>
+        </h3>
+        <hr>
+        <app-sidebar-component></app-sidebar-component>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <app-main-component></app-main-component>
+    </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,19 @@
+app-messages {
+    position: absolute;
+    margin-bottom: 140px;
+}
+
+app-chat-input {
+    position: fixed;
+    bottom: 16px;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.icon {
+    padding: 0 14px;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
