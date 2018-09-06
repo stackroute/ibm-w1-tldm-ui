@@ -1,20 +1,28 @@
 .message-area {
     margin-top: 80px;
     margin-bottom: 80px;
-    padding: 8px;
+    padding: 5px;
+    
+}
+.message-area img{
+    width: 50px;
+
 }
 
 .message {
-    width: 60rem;
+    width: 50rem;
     padding: 20px;
     margin: 8px;
 }
 
 .sender {
-    float: left;
+    float: right;
+    text-align: end;
+    
 }
 
 .receiver {
-    float: right;
+    float: left;
+    text-align: start;
 }
 
