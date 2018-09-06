@@ -9,8 +9,12 @@
         </strong>
 
         <!--implement for loop for multiple people-->
-        <mat-list-item>
-            @ user name here
-        </mat-list-item>
+        <div *ngFor="let user of users">
+            <mat-list-item>
+                <p>
+                    {{ user.userName }}
+                </p>
+            </mat-list-item>
+        </div>
     </mat-nav-list>
 </div>
