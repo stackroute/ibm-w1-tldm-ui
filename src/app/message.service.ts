@@ -1,8 +1,6 @@
 import {Injectable} from '@angular/core';
 import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
-// import {Message} from './Message';
-
 
 
 @Injectable({
