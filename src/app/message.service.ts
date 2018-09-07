@@ -10,7 +10,7 @@ import * as SockJS from 'sockjs-client';
 })
 export class MessageService {
 
-    private serverUrl = 'http://localhost:8080/gs-guide-websocket';
+    private serverUrl = 'http://172.23.239.122:8080/gs-guide-websocket';
     private stompClient = null;
     message: string;
 
