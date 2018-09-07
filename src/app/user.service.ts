@@ -8,10 +8,11 @@ import {User} from './user';
 })
 export class UserService {
 
-    baseUrl = `http://172.23.239.62:8080/api/user`;
-
     constructor(private httpClient: HttpClient) {
     }
+
+    baseUrl = 'http://172.23.239.62:8080/api/user';
+
 
     getAllUsers(): Observable<User[]> {
         return this.httpClient.get<User[]>(this.baseUrl);
