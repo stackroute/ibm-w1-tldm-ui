@@ -4,6 +4,8 @@ import * as SockJS from 'sockjs-client';
 import {Message} from './message';
 import {User} from './user';
 import {MessageBody} from './messagebody';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
 
 
 @Injectable({
@@ -13,12 +15,11 @@ export class MessageService {
 
     private serverUrl = 'http://172.23.239.122:8080/gs-guide-websocket';
     private stompClient = null;
-
-    message;
+    // message;
 
     messagesArr: MessageBody[] = [];
 
-    constructor() {
+    constructor(private http: HttpClient) {
     }
 
     establishConnection() {
@@ -33,6 +34,10 @@ export class MessageService {
         });
     }
 
+    getAllMessagesBySenderAndReceiver(): Observable<Message[]> {
+        return this.http.get<Message[]>(`http://172.23.239.122:8080/api/v1/message/1/2`);
+    }
+
     disconnect() {
         if (this.stompClient !== null) {
             this.stompClient.disconnect();
@@ -43,7 +48,7 @@ export class MessageService {
     showGreeting(message) {
         // this.message = message;
         this.messagesArr.push(message);
-        console.log(this.messagesArr);
+        // console.log(this.message);
     }
 
     sendMessage(message: string) {
