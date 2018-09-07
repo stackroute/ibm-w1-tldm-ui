@@ -1,6 +1,9 @@
 import {Injectable} from '@angular/core';
 import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
+import {Message} from './message';
+import {User} from './user';
+import {MessageBody} from './messagebody';
 
 
 @Injectable({
@@ -10,8 +13,10 @@ export class MessageService {
 
     private serverUrl = 'http://172.23.239.122:8080/gs-guide-websocket';
     private stompClient = null;
+
     message;
 
+    messagesArr: MessageBody[] = [];
 
     constructor() {
     }
@@ -36,8 +41,9 @@ export class MessageService {
     }
 
     showGreeting(message) {
-        this.message = message;
-        console.log(this.message);
+        // this.message = message;
+        this.messagesArr.push(message);
+        console.log(this.messagesArr);
     }
 
     sendMessage(message: string) {

@@ -1,29 +1,18 @@
 <!--implement for loop here for multiple messages-->
 <div class="message-area">
-    <mat-card class="message sender">
-        <!--implement for loop for multiple messages if in same time-frame-->
-        <div class="messages">
-            <p>
-                {{messageService.retrieveMessage()}}
-            </p>
-        </div>
-        <mat-divider></mat-divider>
-        <br>
-        <div class="time-stamp">
-            << message time-stamp here >>
-        </div>
-    </mat-card>
-    <!--<mat-card class="message receiver">
-        &lt;!&ndash;implement for loop for multiple messages if in same time-frame&ndash;&gt;
-        <div class="messages">
-            <p>
-                {{messageService.retrieveMessage()}}
-            </p>
-        </div>
-        <mat-divider></mat-divider>
-        <br>
-        <div class="time-stamp">
-            << message time-stamp here >>
-        </div>
-    </mat-card>-->
+    <div *ngFor="let msg of messageService.messagesArr">
+        <mat-card class="message sender">
+            <!--implement for loop for multiple messages if in same time-frame-->
+            <div class="messages">
+                <p>
+                    {{msg.content}}
+                </p>
+            </div>
+            <mat-divider></mat-divider>
+            <br>
+            <div class="time-stamp">
+                {{msg.time}}
+            </div>
+        </mat-card>
+    </div>
 </div>

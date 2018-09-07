@@ -6,4 +6,10 @@ export class Message {
     sender: User;
     receiver: User;
     createdAt: Date;
+
+    constructor(sender: User, receiver: User, message: string) {
+        this.sender = sender;
+        this.receiver = receiver;
+        this.messageContent = message;
+    }
 }
