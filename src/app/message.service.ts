@@ -12,7 +12,7 @@ export class MessageService {
 
     private serverUrl = 'http://172.23.239.122:8080/gs-guide-websocket';
     private stompClient = null;
-    message: string;
+    message;
 
 
     constructor() {
@@ -25,7 +25,7 @@ export class MessageService {
         this.stompClient.connect({}, function (frame) {
             console.log('Connected: ' + frame);
             that.stompClient.subscribe('/topic/response', function (message) {
-                that.showGreeting(JSON.parse(message.body).content);
+                that.showGreeting(JSON.parse(message.body));
             });
         });
     }
@@ -37,12 +37,9 @@ export class MessageService {
         console.log('Disconnected');
     }
 
-    showGreeting(message: string) {
+    showGreeting(message) {
         this.message = message;
-    }
-
-    retrieveMessage(): string {
-        return this.message;
+        console.log(this.message);
     }
 
     sendMessage(message: string) {
