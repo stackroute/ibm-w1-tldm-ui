@@ -2,28 +2,23 @@
     margin-top: 80px;
     margin-bottom: 80px;
     padding: 5px;
-    
-}
-.message-area img{
-    width: 50px;
 
 }
 
 .message {
-    width: 50rem;
+    width: 100rem;
     padding: 20px;
     margin: 8px;
-    background: cornflowerblue;
+    justify-content: center;
 }
 
 .sender {
-    float: right;
-    text-align: end;
-    
+    /*float: right;*/
+    /*text-align: end;*/
 }
 
 .receiver {
-    float: left;
-    text-align: start;
+    /*float: left;*/
+    /*text-align: start;*/
 }
 
