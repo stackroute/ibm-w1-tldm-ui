@@ -16,8 +16,8 @@ export class MessagesComponent implements OnInit {
 
     ngOnInit() {
         this.messageService.establishConnection();
-        // this.messageService.getAllMessagesBySenderAndReceiver().subscribe(data => {
-        //     this.messages = data;
-        // });
+        this.messageService.getAllMessagesBySenderAndReceiver().subscribe(data => {
+            this.messages = data;
+        });
     }
 }
