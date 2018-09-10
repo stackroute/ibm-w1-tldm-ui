@@ -51,7 +51,7 @@ export class MessageService {
         // console.log(this.message);
     }
 
-    sendMessage(message: Message) {
+    sendMessage(message: string) {
         this.stompClient.send('/app/chat', {}, JSON.stringify({'messageContent': message}));
     }
 }

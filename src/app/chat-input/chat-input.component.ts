@@ -24,8 +24,9 @@ export class ChatInputComponent implements OnInit {
     sendMessage(message: string) {
         this.value = '';
         if (message !== '') {
-            this.message = new Message(this.userService.sender, this.userService.receiver, message);
-            this.messageService.sendMessage(this.message);
+            // this.message = new Message(message, this.userService.sender, this.userService.receiver);
+            // this.messageService.sendMessage(this.message);
+            this.messageService.sendMessage(message);
         }
     }
 }
