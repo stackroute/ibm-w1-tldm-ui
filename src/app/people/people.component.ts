@@ -19,8 +19,8 @@ export class PeopleComponent implements OnInit {
         });
     }
 
-    setReceiver(userName: string) {
-        this.userService.setReceiver(userName);
-        console.log(userName);
+    setReceiver(name: string) {
+        this.userService.setReceiver(name);
+        console.log(name);
     }
 }

@@ -8,7 +8,7 @@ import {User} from './user';
 })
 export class UserService {
 
-    // receiver: string;
+    receiverName: string;
 
     sender: User = {
         userId: `sender_123`,
@@ -36,7 +36,7 @@ export class UserService {
         return this.httpClient.get<User[]>(this.baseUrl);
     }
 
-    // setReceiver(name: string) {
-    //     this.receiver = name;
-    // }
+    setReceiver(name: string) {
+        this.receiverName = name;
+    }
 }

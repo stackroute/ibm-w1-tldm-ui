@@ -1,7 +1,7 @@
 <div class="mat-toolbar">
     <mat-toolbar color="primary">
         <mat-toolbar-row>
-            <span *ngIf="userService.receiver; else recipientName"> {{userService.receiver}} </span>
+            <span *ngIf="userService.receiverName; else recipientName"> {{userService.receiverName}} </span>
             <ng-template #recipientName><< Recipient name >></ng-template>
             <span class="spacer"></span>
             <mat-icon class="icon" matTooltip="Search">search</mat-icon>
