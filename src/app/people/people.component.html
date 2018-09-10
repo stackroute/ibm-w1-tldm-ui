@@ -10,7 +10,7 @@
 
         <!--implement for loop for multiple people-->
         <div *ngFor="let user of users">
-            <mat-list-item>
+            <mat-list-item (click)="setReceiver(user.userName)">
                 <p>
                     {{ user.userName }}
                 </p>
