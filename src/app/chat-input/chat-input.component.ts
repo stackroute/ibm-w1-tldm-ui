@@ -12,7 +12,7 @@ export class ChatInputComponent implements OnInit {
 
     value = '';
 
-    // message: Message;
+    message: Message;
 
     constructor(private messageService: MessageService,
                 private userService: UserService) {
@@ -23,9 +23,9 @@ export class ChatInputComponent implements OnInit {
 
     sendMessage(message: string) {
         this.value = '';
-        // this.message = new Message(this.userService.sender, this.userService.receiver, message);
         if (message !== '') {
-            this.messageService.sendMessage(message);
+            this.message = new Message(this.userService.sender, this.userService.receiver, message);
+            this.messageService.sendMessage(this.message);
         }
     }
 }
