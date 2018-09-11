@@ -17,25 +17,12 @@ export class MessageService {
     private stompClient = null;
 
     messagesArr: MessageBody[] = [];
-    //
-    // sender: User = {
-    //     userId: `1`,
-    //     userName: `sender`,
-    //     name: `Sender`,
-    //     phoneNumber: `123456789`,
-    //     userMail: `sender@sender.com`
-    // };
-    //
-    // receiver: User = {
-    //     userId: `2`,
-    //     userName: `receiver`,
-    //     name: `Receiver`,
-    //     phoneNumber: `987654321`,
-    //     userMail: `receiver@receiver.com`
-    // };
 
     sender: User;
     receiver: User;
+
+    senderId: string;
+    receiverId: string;
 
     constructor(private http: HttpClient) {
     }
@@ -53,7 +40,7 @@ export class MessageService {
     }
 
     getAllMessagesBySenderAndReceiver(): Observable<Message[]> {
-        return this.http.get<Message[]>(`http://172.23.239.122:8080/api/v1/message/1/2`);
+        return this.http.get<Message[]>(`http://172.23.239.122:8080/api/v1/message/${this.sender.userId}/${this.receiver.userId}`);
     }
 
     disconnect() {

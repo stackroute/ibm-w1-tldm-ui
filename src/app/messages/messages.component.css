@@ -11,11 +11,17 @@
 }
 
 .sender {
+    width: 50%;
+    padding: 24px;
+    margin: 8px;
     float: right;
     text-align: end;
 }
 
-.receiver {
+.recipient {
+    width: 50%;
+    padding: 24px;
+    margin: 8px;
     float: left;
     text-align: start;
 }
