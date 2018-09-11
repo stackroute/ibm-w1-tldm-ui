@@ -2,7 +2,7 @@
 <div class="message-area">
     <div *ngIf="messages">
         <div *ngFor="let message of messages">
-            <div [className]="message.sender==messageService.sender?'recipient':'sender'">
+            <div [className]="message.sender.userId===messageService.sender.userId?'sender':'recipient'">
                 <mat-card>
                     <div class="messages">
                         <p>
@@ -20,7 +20,7 @@
     </div>
 
     <div *ngFor="let msg of messageService.messagesArr">
-        <div [className]="msg.sender==messageService.sender?'recipient':'sender'">
+        <div [className]="msg.sender.userId===messageService.sender.userId?'sender':'recipient'">
             <mat-card>
                 <!--implement for loop for multiple messages if in same time-frame-->
                 <div class="messages">
