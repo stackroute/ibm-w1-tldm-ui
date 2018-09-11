@@ -12,7 +12,8 @@ export class MessagesComponent implements OnInit {
 
     messages: Message[];
 
-    constructor(public messageService: MessageService, private route: ActivatedRoute) {
+    constructor(public messageService: MessageService,
+                private route: ActivatedRoute) {
     }
 
     ngOnInit() {

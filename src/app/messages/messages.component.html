@@ -1,5 +1,6 @@
 <!--implement for loop here for multiple messages-->
 <div class="message-area">
+    <!--div for displaying messages fetched from database-->
     <div *ngIf="messages">
         <div *ngFor="let message of messages">
             <div [className]="message.sender.userId===messageService.sender.userId?'sender':'recipient'">
@@ -19,10 +20,10 @@
         </div>
     </div>
 
+    <!--div for displaying broadcast messages-->
     <div *ngFor="let msg of messageService.messagesArr">
         <div [className]="msg.sender.userId===messageService.sender.userId?'sender':'recipient'">
             <mat-card>
-                <!--implement for loop for multiple messages if in same time-frame-->
                 <div class="messages">
                     <p>
                         {{msg.content}}
