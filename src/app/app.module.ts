@@ -18,7 +18,7 @@ import {MatInputModule} from '@angular/material/input';
 import {ToolbarComponent} from './toolbar/toolbar.component';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
-import { AppRoutingModule } from './/app-routing.module';
+import {AppRoutingModule} from './/app-routing.module';
 
 @NgModule({
     declarations: [

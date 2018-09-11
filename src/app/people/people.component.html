@@ -9,27 +9,24 @@
         </strong>
 
         <!--implement for loop for multiple people-->
-        <p>
-            Select Sender
-        </p>
-        <div *ngFor="let user of users">
-            <mat-list-item (click)="setSender(user.name)">
-                <p>
-                    {{ user.name }}
+        <button mat-button [matMenuTriggerFor]="senderMenu">Select Sender</button>
+        <mat-menu #senderMenu="matMenu">
+            <div *ngFor="let user of users">
+                <p mat-menu-item (click)="setSender(user.name)">
+                    {{user.name}}
                 </p>
-            </mat-list-item>
-        </div>
-        <p>
-            Select Receiver
-        </p>
-        <div *ngFor="let user of users">
-            <a routerLink="message-area/{{user.userId}}">
-                <mat-list-item (click)="setReceiver(user.name)">
-                    <p>
-                        {{ user.name }}
+            </div>
+        </mat-menu>
+
+        <button mat-button [matMenuTriggerFor]="receiverMenu">Select Receiver</button>
+        <mat-menu #receiverMenu="matMenu">
+            <div *ngFor="let user of users">
+                <a routerLink="message-area/{{user.userId}}">
+                    <p mat-menu-item (click)="setReceiver(user.name)">
+                        {{user.name}}
                     </p>
-                </mat-list-item>
-            </a>
-        </div>
+                </a>
+            </div>
+        </mat-menu>
     </mat-nav-list>
 </div>
