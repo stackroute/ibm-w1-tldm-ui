@@ -17,22 +17,25 @@ export class MessageService {
     private stompClient = null;
 
     messagesArr: MessageBody[] = [];
+    //
+    // sender: User = {
+    //     userId: `1`,
+    //     userName: `sender`,
+    //     name: `Sender`,
+    //     phoneNumber: `123456789`,
+    //     userMail: `sender@sender.com`
+    // };
+    //
+    // receiver: User = {
+    //     userId: `2`,
+    //     userName: `receiver`,
+    //     name: `Receiver`,
+    //     phoneNumber: `987654321`,
+    //     userMail: `receiver@receiver.com`
+    // };
 
-    sender: User = {
-        userId: `1`,
-        userName: `sender`,
-        name: `Sender`,
-        phoneNumber: `123456789`,
-        userMail: `sender@sender.com`
-    };
-
-    receiver: User = {
-        userId: `2`,
-        userName: `receiver`,
-        name: `Receiver`,
-        phoneNumber: `987654321`,
-        userMail: `receiver@receiver.com`
-    };
+    sender: User;
+    receiver: User;
 
     constructor(private http: HttpClient) {
     }
@@ -62,6 +65,14 @@ export class MessageService {
 
     showGreeting(message) {
         this.messagesArr.push(message);
+    }
+
+    setSender(sender: User) {
+        this.sender = sender;
+    }
+
+    setReceiver(receiver: User) {
+        this.receiver = receiver;
     }
 
     sendMessage(message: string) {
