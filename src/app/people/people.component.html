@@ -9,6 +9,19 @@
         </strong>
 
         <!--implement for loop for multiple people-->
+        <p>
+            Select Sender
+        </p>
+        <div *ngFor="let user of users">
+            <mat-list-item (click)="setSender(user.name)">
+                <p>
+                    {{ user.name }}
+                </p>
+            </mat-list-item>
+        </div>
+        <p>
+            Select Receiver
+        </p>
         <div *ngFor="let user of users">
             <mat-list-item (click)="setReceiver(user.name)">
                 <p>

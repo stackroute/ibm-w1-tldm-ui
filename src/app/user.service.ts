@@ -9,22 +9,7 @@ import {User} from './user';
 export class UserService {
 
     receiverName: string;
-
-    // sender: User = {
-    //     userId: `sender_123`,
-    //     userName: `sender`,
-    //     name: `Sender`,
-    //     phoneNumber: `123456789`,
-    //     userMail: `sender@sender.com`
-    // };
-    //
-    // receiver: User = {
-    //     userId: `receiver_987`,
-    //     userName: `receiver`,
-    //     name: `Receiver`,
-    //     phoneNumber: `987654321`,
-    //     userMail: `receiver@receiver.com`
-    // };
+    senderName: string;
 
     constructor(private httpClient: HttpClient) {
     }
@@ -36,7 +21,15 @@ export class UserService {
         return this.httpClient.get<User[]>(this.baseUrl);
     }
 
+    setSender(name: string) {
+        this.senderName = name;
+    }
+
     setReceiver(name: string) {
         this.receiverName = name;
+    }
+
+    getUserDetailsByName(name: string): Observable<User> {
+        return this.httpClient.get<User>(`${this.baseUrl}/name/${name}`);
     }
 }

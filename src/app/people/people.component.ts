@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from '../user.service';
 import {User} from '../user';
+import {MessageService} from '../message.service';
 
 @Component({
     selector: 'app-people',
@@ -9,8 +10,9 @@ import {User} from '../user';
 })
 export class PeopleComponent implements OnInit {
     users: User[];
+    user: User;
 
-    constructor(private userService: UserService) {
+    constructor(private userService: UserService, private messageService: MessageService) {
     }
 
     ngOnInit() {
@@ -19,8 +21,19 @@ export class PeopleComponent implements OnInit {
         });
     }
 
+    setSender(name: string) {
+        this.userService.setSender(name);
+        this.userService.getUserDetailsByName(name).subscribe(data => {
+            console.log(this.user = data);
+            this.messageService.setSender(this.user);
+        });
+    }
+
     setReceiver(name: string) {
         this.userService.setReceiver(name);
-        console.log(name);
+        this.userService.getUserDetailsByName(name).subscribe(data => {
+            console.log(this.user = data);
+            this.messageService.setReceiver(this.user);
+        });
     }
 }
