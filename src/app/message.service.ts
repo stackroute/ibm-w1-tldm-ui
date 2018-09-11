@@ -14,13 +14,28 @@ import {User} from './user';
 export class MessageService {
 
     private serverUrl = 'http://172.23.239.122:8080/gs-guide-websocket';
+    // private serverUrl = 'http://localhost:8080/gs-guide-websocket';
     private stompClient = null;
-
+    // message;
     messagesArr: MessageBody[] = [];
-
+    //
+    // sender: User = {
+    //     userId: `1`,
+    //     userName: `sender`,
+    //     name: `Sender`,
+    //     phoneNumber: `123456789`,
+    //     userMail: `sender@sender.com`
+    // };
+    //
+    // receiver: User = {
+    //     userId: `2`,
+    //     userName: `receiver`,
+    //     name: `Receiver`,
+    //     phoneNumber: `987654321`,
+    //     userMail: `receiver@receiver.com`
+    // };
     sender: User;
     receiver: User;
-
     senderId: string;
     receiverId: string;
 
@@ -39,8 +54,8 @@ export class MessageService {
         });
     }
 
-    getAllMessagesBySenderAndReceiver(): Observable<Message[]> {
-        return this.http.get<Message[]>(`http://172.23.239.122:8080/api/v1/message/${this.sender.userId}/${this.receiver.userId}`);
+    getAllMessagesBySenderAndReceiver(r_id: string): Observable<Message[]> {
+        return this.http.get<Message[]>(`http://172.23.239.122:8080/api/v1/message/${this.sender.userId}/${r_id}`);
     }
 
     disconnect() {
@@ -51,7 +66,9 @@ export class MessageService {
     }
 
     showGreeting(message) {
+        // this.message = message;
         this.messagesArr.push(message);
+        // console.log(this.message);
     }
 
     setSender(sender: User) {

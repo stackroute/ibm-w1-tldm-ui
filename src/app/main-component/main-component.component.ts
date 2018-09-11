@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {MessageService} from '../message.service';
 
 @Component({
     selector: 'app-main-component',
@@ -7,10 +8,10 @@ import {Component, OnInit} from '@angular/core';
 })
 export class MainComponentComponent implements OnInit {
 
-    constructor() {
+    constructor(private messageService: MessageService) {
     }
 
     ngOnInit() {
+        this.messageService.establishConnection();
     }
-
 }
