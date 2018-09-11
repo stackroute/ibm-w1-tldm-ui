@@ -14,9 +14,7 @@ import {User} from './user';
 export class MessageService {
 
     private serverUrl = 'http://172.23.239.122:8080/gs-guide-websocket';
-    // private serverUrl = 'http://localhost:8080/gs-guide-websocket';
     private stompClient = null;
-    // message;
 
     messagesArr: MessageBody[] = [];
 
@@ -63,9 +61,7 @@ export class MessageService {
     }
 
     showGreeting(message) {
-        // this.message = message;
         this.messagesArr.push(message);
-        // console.log(this.message);
     }
 
     sendMessage(message: string) {

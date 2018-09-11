@@ -1,13 +1,13 @@
 app-messages {
+    width: 100%;
     position: absolute;
-    margin-bottom: 140px;
+    margin-bottom: 48px;
 }
 
 app-chat-input {
+    width: 100%;
     position: fixed;
-    bottom: 16px;
-    margin-left: 100px;
-    margin-right: 100px;
+    bottom: 0;
 }
 
 .icon {

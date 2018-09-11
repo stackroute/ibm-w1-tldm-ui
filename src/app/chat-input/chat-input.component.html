@@ -1,11 +1,12 @@
 <mat-card>
-    <mat-form-field class="example-form-field">
+    <mat-form-field class="form-field">
         <input #text matInput type="text" placeholder="Type a message" [(ngModel)]="value">
         <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
             <mat-icon>backspace</mat-icon>
         </button>
     </mat-form-field>
-    <button mat-button (click)="sendMessage(text.value)">
-        <mat-icon>forward</mat-icon>
+    <span class="spacer"></span>
+    <button class="send-btn" mat-button (click)="sendMessage(text.value)">
+        <span>Send Message </span><mat-icon>forward</mat-icon>
     </button>
 </mat-card>

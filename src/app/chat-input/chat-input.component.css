@@ -1,5 +1,7 @@
-.example-form-field {
-    width: 1400px;
-    flex: auto;
-    padding-inline-start: 10px;
+.form-field {
+    width: 100%;
+}
+
+.send-btn {
+    color: indigo;
 }

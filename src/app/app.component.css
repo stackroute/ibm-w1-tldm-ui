@@ -1,5 +1,9 @@
+app-main-component {
+    width: 100%;
+}
+
 .main-component-container {
-    position: absolute;
+    position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
@@ -8,10 +12,7 @@
 }
 
 .sideNav {
-    /*width: auto;*/
     padding-left: 10px;
     padding-right: 10px;
-    box-shadow: 2px 0 8px black;
- 
-    
 }
+
