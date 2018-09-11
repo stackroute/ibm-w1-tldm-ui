@@ -7,9 +7,9 @@ export class Message {
     receiver: User;
     createdAt: Date;
 
-    constructor(sender: User, receiver: User, message: string) {
-        this.sender = sender;
-        this.receiver = receiver;
-        this.messageContent = message;
-    }
+    // constructor(messageContent: string, sender: User, receiver: User) {
+    //     this.messageContent = messageContent;
+    //     this.sender = sender;
+    //     this.receiver = receiver;
+    // }
 }

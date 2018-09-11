@@ -21,13 +21,10 @@ export class ChatInputComponent implements OnInit {
     ngOnInit() {
     }
 
-    sendMessage(message: string) {
+    sendMessage(messageContent: string) {
         this.value = '';
-        if (message !== '') {
-            // this.message = new Message(this.userService.sender, this.userService.receiver, message);
-            // this.message = new Message(message, this.userService.sender, this.userService.receiver);
-            // this.messageService.sendMessage(this.message);
-            this.messageService.sendMessage(message);
+        if (messageContent !== '') {
+            this.messageService.sendMessage(messageContent);
         }
     }
 }
