@@ -23,11 +23,13 @@
             Select Receiver
         </p>
         <div *ngFor="let user of users">
-            <mat-list-item (click)="setReceiver(user.name)">
-                <p>
-                    {{ user.name }}
-                </p>
-            </mat-list-item>
+            <a routerLink="message-area/{{user.userId}}">
+                <mat-list-item (click)="setReceiver(user.name)">
+                    <p>
+                        {{ user.name }}
+                    </p>
+                </mat-list-item>
+            </a>
         </div>
     </mat-nav-list>
 </div>

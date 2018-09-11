@@ -38,6 +38,8 @@ export class MessageService {
 
     sender: User;
     receiver: User;
+    senderId: string;
+    receiverId: string;
 
     constructor(private http: HttpClient) {
     }
@@ -54,8 +56,8 @@ export class MessageService {
         });
     }
 
-    getAllMessagesBySenderAndReceiver(): Observable<Message[]> {
-        return this.http.get<Message[]>(`http://172.23.239.122:8080/api/v1/message/1/2`);
+    getAllMessagesBySenderAndReceiver(r_id: string): Observable<Message[]> {
+        return this.http.get<Message[]>(`http://172.23.239.122:8080/api/v1/message/${this.sender.userId}/${r_id}`);
     }
 
     disconnect() {
