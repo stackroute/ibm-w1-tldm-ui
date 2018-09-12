@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MessageService} from '../message.service';
+import {Message} from '../message';
 
 @Component({
     selector: 'app-chat-input',
@@ -10,6 +11,8 @@ export class ChatInputComponent implements OnInit {
 
     value = '';
 
+    message: Message;
+
     constructor(private messageService: MessageService) {
     }
 
@@ -19,7 +22,8 @@ export class ChatInputComponent implements OnInit {
     sendMessage(messageContent: string) {
         this.value = '';
         if (messageContent !== '') {
-            this.messageService.sendMessage(messageContent);
+            this.message = new Message(messageContent, this.messageService.getSender(), this.messageService.getReceiver());
+            this.messageService.sendMessage(this.message);
         }
     }
 }

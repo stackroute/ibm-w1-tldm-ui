@@ -12,8 +12,8 @@
         <button mat-button [matMenuTriggerFor]="senderMenu">Select Sender</button>
         <mat-menu #senderMenu="matMenu">
             <div *ngFor="let user of users">
-                <p mat-menu-item (click)="setSender(user.name)">
-                    {{user.name}}
+                <p mat-menu-item (click)="setSender(user.userName)">
+                    {{user.userName}}
                 </p>
             </div>
         </mat-menu>
@@ -23,8 +23,8 @@
         <mat-menu #receiverMenu="matMenu">
             <div *ngFor="let user of users">
                 <a routerLink="message-area/{{user.userId}}">
-                    <p mat-menu-item (click)="setReceiver(user.name)">
-                        {{user.name}}
+                    <p mat-menu-item (click)="setReceiver(user.userName)">
+                        {{user.userName}}
                     </p>
                 </a>
             </div>

@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
 import {Message} from './message';
-import {MessageBody} from './messagebody';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {User} from './user';
@@ -15,7 +14,7 @@ export class MessageService {
 
     private serverUrl = 'http://172.23.239.122:8080/gs-guide-websocket';
     private stompClient = null;
-    messagesArr: MessageBody[] = [];
+    messagesArr: Message[] = [];
     sender: User;
     receiver: User;
 
@@ -49,18 +48,25 @@ export class MessageService {
         this.messagesArr.push(message);
     }
 
+    getSender(): User {
+        return this.sender;
+    }
+
     setSender(sender: User) {
         this.sender = sender;
+    }
+
+    getReceiver(): User {
+        return this.receiver;
     }
 
     setReceiver(receiver: User) {
         this.receiver = receiver;
     }
 
-    sendMessage(message: string) {
-        this.stompClient.send('/app/chat', {}, JSON.stringify({
-            'messageContent': message, 'sender': this.sender, 'receiver': this.receiver
-        }))
+    sendMessage(message: Message) {
+        console.log(message);
+        this.stompClient.send('/app/chat', {}, JSON.stringify(message))
         ;
     }
 }

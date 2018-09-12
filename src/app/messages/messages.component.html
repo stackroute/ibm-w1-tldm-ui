@@ -26,13 +26,13 @@
             <mat-card>
                 <div class="messages">
                     <p>
-                        {{msg.content}}
+                        {{msg.messageContent}}
                     </p>
                 </div>
                 <mat-divider></mat-divider>
                 <br>
                 <div class="time-stamp">
-                    {{msg.time}}
+                    {{msg.createdAt| date:'shortTime'}}
                 </div>
             </mat-card>
         </div>
