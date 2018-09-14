@@ -4,3 +4,9 @@ app-chat-input {
     bottom: 0;
 }
 
+.messages {
+    width: 100%;
+    position: absolute;
+    margin-bottom: 10%;
+}
+
