@@ -12,7 +12,7 @@ import {User} from './user';
 })
 export class MessageService {
 
-    private serverUrl = 'http://172.23.239.122:8080/gs-guide-websocket';
+    private serverUrl = 'http://172.23.239.122:8080/web-socket';
     private stompClient = null;
     messagesArr: Message[] = [];
     sender: User;
