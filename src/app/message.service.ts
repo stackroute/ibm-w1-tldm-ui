@@ -21,13 +21,13 @@ export class MessageService {
     constructor(private http: HttpClient) {
     }
 
-    establishConnection() {
+    establishConnection(userId: string) {
         const socket = new SockJS(this.serverUrl);
         this.stompClient = Stomp.over(socket);
         const that = this;
         this.stompClient.connect({}, function (frame) {
             console.log('Connected: ' + frame);
-            that.stompClient.subscribe('/topic/response', function (message) {
+            that.stompClient.subscribe(`/topic/response/${userId}`, function (message) {
                 that.showGreeting(JSON.parse(message.body));
             });
         });

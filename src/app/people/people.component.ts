@@ -29,6 +29,7 @@ export class PeopleComponent implements OnInit {
         this.userService.getUserDetailsByName(name).subscribe(data => {
             console.log(this.user = data);
             this.messageService.setSender(this.user);
+            this.messageService.establishConnection(this.user.userId);
         });
     }
 
