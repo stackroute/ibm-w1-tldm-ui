@@ -9,16 +9,18 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MainComponentComponent} from './main-component/main-component.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule, MatListModule, MatCardModule} from '@angular/material';
+import {MatButtonModule, MatListModule, MatCardModule, MatTab, MatTabsModule} from '@angular/material';
 import {MatCheckboxModule, MatTooltipModule} from '@angular/material';
 import {MatMenuModule} from '@angular/material/menu';
 import {MessagesComponent} from './messages/messages.component';
 import {ChatInputComponent} from './chat-input/chat-input.component';
 import {MatInputModule} from '@angular/material/input';
 import {ToolbarComponent} from './toolbar/toolbar.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './/app-routing.module';
+import { InvitemembersComponent } from './invitemembers/invitemembers.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
     declarations: [
@@ -29,7 +31,10 @@ import {AppRoutingModule} from './/app-routing.module';
         PeopleComponent,
         MessagesComponent,
         ChatInputComponent,
-        ToolbarComponent
+        ToolbarComponent,
+        InvitemembersComponent,
+        DashboardComponent,
+
     ],
     imports: [
         BrowserModule,
@@ -46,7 +51,11 @@ import {AppRoutingModule} from './/app-routing.module';
         MatInputModule,
         FormsModule,
         HttpClientModule,
-        AppRoutingModule
+        AppRoutingModule,
+        ReactiveFormsModule,
+        MatTabsModule,
+        
+
     ],
     providers: [],
     bootstrap: [AppComponent]

@@ -1,0 +1,35 @@
+<html>
+
+<head></head>
+
+<body>
+  <div>
+    <mat-tab-group class="form">
+      <mat-tab label="Invite Member to Community">
+        <br>
+
+        <mat-form-field class="formheight">
+          <input matInput type="text" [(ngModel)]="user.userMail" placeholder="Enter Email Id " [formControl]="emailPhoneNumberFormControl">
+         
+          <mat-error *ngIf="emailPhoneNumberFormControl.hasError('required')">
+            Email is
+            <strong>required</strong>
+          </mat-error>
+         
+        </mat-form-field>
+        <p>i.e, johndoe@domain.com</p>  
+
+        <br>
+        <br>
+
+
+        <button mat-raised-button type="submit" (click)="addUser(user.userMail)" color="primary">Invite Member</button>
+
+
+      </mat-tab>
+    </mat-tab-group>
+
+  </div>
+</body>
+
+</html>
