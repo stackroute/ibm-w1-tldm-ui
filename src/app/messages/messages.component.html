@@ -3,33 +3,80 @@
 <div *ngIf="(channelService.isChannelActive); then channel else user"></div>
 
 <ng-template #channel>
-    <p>Channel messages works!</p>
-    <p>Channel messages works!</p>
-    <p>Channel messages works!</p>
-    <p>Channel messages works!</p>
-    <p>Channel messages works!</p>
-    <p>Channel messages works!</p>
-    <p>Channel messages works!</p>
-    <p>Channel messages works!</p>
-    <p>Channel messages works!</p>
-    <p>Channel messages works!</p>
-    <p>Channel messages works!</p>
-    <p>Channel messages works!</p>
-    <p>Channel messages works!</p>
-    <p>Channel messages works!</p>
-    <p>Channel messages works!</p>
-    <p>Channel messages works!</p>
-    <p>Channel messages works!</p>
-    <p>Channel messages works!</p>
-    <p>Channel messages works!</p>
-    <p>Channel messages works!</p>
-    <p>Channel messages works!</p>
-    <p>Channel messages works!</p>
-    <p>Channel messages works!</p>
-    <p>Channel messages works!</p>
-    <p>Channel messages works!</p>
-    <p>Channel messages works!</p>
-    <p>Channel messages works!</p>
+    <div class="message-area">
+        <!--div for displaying messages fetched from database-->
+        <!--<div>-->
+        <!--<div>-->
+        <!--<div class="channel-incoming">-->
+        <!--<mat-card>-->
+        <!--<mat-card-header>-->
+        <!--<mat-card-title>-->
+        <!--<< Sender name here >>-->
+        <!--</mat-card-title>-->
+        <!--</mat-card-header>-->
+        <!--<mat-card-content>-->
+        <!--<div class="messages">-->
+        <!--<p>-->
+        <!--<< Message content here >>-->
+        <!--</p>-->
+        <!--</div>-->
+        <!--<mat-divider></mat-divider>-->
+        <!--<br>-->
+        <!--<div class="time-stamp">-->
+        <!--<< Message time stamp here >>-->
+        <!--</div>-->
+        <!--</mat-card-content>-->
+        <!--</mat-card>-->
+        <!--</div>-->
+        <!--<div class="channel-outgoing">-->
+        <!--<mat-card>-->
+        <!--<mat-card-header>-->
+        <!--<mat-card-title>-->
+        <!--<< Sender name here >>-->
+        <!--</mat-card-title>-->
+        <!--</mat-card-header>-->
+        <!--<mat-card-content>-->
+        <!--<div class="messages">-->
+        <!--<p>-->
+        <!--<< Message content here >>-->
+        <!--</p>-->
+        <!--</div>-->
+        <!--<mat-divider></mat-divider>-->
+        <!--<br>-->
+        <!--<div class="time-stamp">-->
+        <!--<< Message time stamp here >>-->
+        <!--</div>-->
+        <!--</mat-card-content>-->
+        <!--</mat-card>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <!--div for displaying broadcasted messages-->
+        <div>
+            <div class="channel-incoming">
+                <mat-card>
+                    <mat-card-header>
+                        <mat-card-title>
+                            << Sender name here >>
+                        </mat-card-title>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <div class="messages">
+                            <p>
+                                << Message content here >>
+                            </p>
+                        </div>
+                        <mat-divider></mat-divider>
+                        <br>
+                        <div class="time-stamp">
+                            << Message time stamp here >>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </div>
 </ng-template>
 
 <ng-template #user>
