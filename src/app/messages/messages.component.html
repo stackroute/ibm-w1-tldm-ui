@@ -54,7 +54,7 @@
 
         <!--div for displaying broadcasted messages-->
         <div *ngFor="let msg of messageService.channelMessagesArr">
-            <div *ngIf="">
+            <div *ngIf="channelService.isAllowedForChannel">
                 <div [className]="msg.sender.userId===messageService.sender.userId?'channel-outgoing':'channel-incoming'">
                     <mat-card>
                         <mat-card-header>

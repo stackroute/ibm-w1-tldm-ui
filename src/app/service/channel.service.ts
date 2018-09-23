@@ -22,6 +22,8 @@ export class ChannelService {
 
     isChannelActive: boolean;
 
+    isAllowedForChannel: boolean;
+
     baseUrl = 'http://172.23.239.233:8065/api/v1/channel';
 
     constructor(private httpClient: HttpClient,
@@ -52,6 +54,12 @@ export class ChannelService {
 
     setChannel(channel: Channel) {
         this.channel = channel;
+
+        for (let i = 0; i < this.channel.channelUsers.length; i++) {
+            if (this.channel.channelUsers[i].userId === this.messageService.sender.userId) {
+                this.isAllowedForChannel = true;
+            }
+        }
     }
 
     getChannel(channel: Channel) {
