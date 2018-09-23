@@ -34,6 +34,7 @@ export class ChannelPageComponent implements OnInit {
             console.log(data);
         });
         this.router.navigateByUrl('/dashboard');
+        this.channelService.fetchChannels();
     }
 
     addUsers(user: User) {

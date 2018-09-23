@@ -14,15 +14,11 @@ export class ChannelsComponent implements OnInit {
     channels: Channel[];
 
     constructor(private router: Router,
-                private channelService: ChannelService,
+                public channelService: ChannelService,
                 private messageService: MessageService) {
     }
 
     ngOnInit() {
-        this.channelService.getAllChannelsByUserId(this.messageService.sender.userId).subscribe(data => {
-            console.log(this.channels = data);
-            this.messageService.establishConnectionForChannel(this.channels);
-        });
     }
 
     createChannel() {

@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {AuthenticationService} from '../service/authentication.service';
 import {MessageService} from '../service/message.service';
 import {UserService} from '../service/user.service';
+import {ChannelService} from '../service/channel.service';
 
 @Component({
     selector: 'app-login',
@@ -24,7 +25,8 @@ export class LoginComponent implements OnInit {
                 private formBuilder: FormBuilder,
                 private router: Router,
                 private messageService: MessageService,
-                private userService: UserService) {
+                private userService: UserService,
+                private channelService: ChannelService) {
     }
 
     ngOnInit() {
@@ -57,6 +59,7 @@ export class LoginComponent implements OnInit {
                     this.userService.getUserDetailsById(data.userId)
                         .subscribe(user => {
                         this.messageService.setSender(user);
+                        this.channelService.fetchChannels();
                         console.log('from login component');
                         console.log(user);
                     });

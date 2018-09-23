@@ -3,6 +3,7 @@ import {Channel} from '../model/channel';
 import {Observable} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {User} from '../model/user';
+import {MessageService} from './message.service';
 
 const httpOptions = {
     headers: new HttpHeaders({'content-Type': 'application/json'})
@@ -21,7 +22,8 @@ export class ChannelService {
 
     baseUrl = 'http://172.23.239.233:8065/api/v1/channel';
 
-    constructor(private httpClient: HttpClient) {
+    constructor(private httpClient: HttpClient,
+                private messageService: MessageService) {
     }
 
     getAllChannels(): Observable<Channel[]> {
@@ -42,8 +44,8 @@ export class ChannelService {
     }
 
     // service method for getting list of channel in which a user is present
-    getAllChannelsByUserId(userId: string): Observable<Channel[]> {
-        return this.httpClient.get<Channel[]>(`${this.baseUrl}/users/${userId}`);
+    getAllChannelsByUserId(user: User): Observable<Channel[]> {
+        return this.httpClient.get<Channel[]>(`${this.baseUrl}/users/${user.userId}`);
     }
 
     setChannel(channel: Channel) {
@@ -61,5 +63,12 @@ export class ChannelService {
     getChannels(channels: Channel[]) {
         this.channels = channels;
 
+    }
+
+    fetchChannels() {
+        this.getAllChannelsByUserId(this.messageService.sender).subscribe(data => {
+            console.log(this.channels = data);
+            this.messageService.establishConnectionForChannel(this.channels);
+        });
     }
 }
