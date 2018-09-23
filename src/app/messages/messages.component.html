@@ -5,33 +5,8 @@
 <ng-template #channel>
     <div class="message-area">
         <!--div for displaying messages fetched from database-->
-        <div *ngFor="let msg of messageService.channelMessages">
-            <div [className]="msg.sender.userId===messageService.sender.userId?'channel-outgoing':'channel-incoming'">
-                <mat-card>
-                    <mat-card-header>
-                        <mat-card-title>
-                            {{msg.sender.userName}}
-                        </mat-card-title>
-                    </mat-card-header>
-                    <mat-card-content>
-                        <div class="messages">
-                            <p>
-                                {{msg.messageContent}}
-                            </p>
-                        </div>
-                        <mat-divider></mat-divider>
-                        <br>
-                        <div class="time-stamp">
-                            {{msg.timestamp| date:'shortTime'}}
-                        </div>
-                    </mat-card-content>
-                </mat-card>
-            </div>
-        </div>
-
-        <!--div for displaying broadcasted messages-->
-        <div *ngFor="let msg of messageService.channelMessagesArr">
-            <div *ngIf="channelService.isAllowedForChannel">
+        <div class="database">
+            <div *ngFor="let msg of messageService.channelMessages">
                 <div [className]="msg.sender.userId===messageService.sender.userId?'channel-outgoing':'channel-incoming'">
                     <mat-card>
                         <mat-card-header>
@@ -52,6 +27,35 @@
                             </div>
                         </mat-card-content>
                     </mat-card>
+                </div>
+            </div>
+        </div>
+
+        <!--div for displaying broadcasted messages-->
+        <div class="socket">
+            <div *ngFor="let msg of messageService.channelMessagesArr">
+                <div *ngIf="channelService.isAllowedForChannel">
+                    <div [className]="msg.sender.userId===messageService.sender.userId?'channel-outgoing':'channel-incoming'">
+                        <mat-card>
+                            <mat-card-header>
+                                <mat-card-title>
+                                    {{msg.sender.userName}}
+                                </mat-card-title>
+                            </mat-card-header>
+                            <mat-card-content>
+                                <div class="messages">
+                                    <p>
+                                        {{msg.messageContent}}
+                                    </p>
+                                </div>
+                                <mat-divider></mat-divider>
+                                <br>
+                                <div class="time-stamp">
+                                    {{msg.timestamp| date:'shortTime'}}
+                                </div>
+                            </mat-card-content>
+                        </mat-card>
+                    </div>
                 </div>
             </div>
         </div>

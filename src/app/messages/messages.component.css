@@ -39,3 +39,11 @@
     float: right;
     text-align: start;
 }
+
+.database {
+    color: red;
+}
+
+.socket {
+    color: blue;
+}
