@@ -34,7 +34,7 @@ export class MessageService {
     constructor(private http: HttpClient) {
     }
 
-    establishConnection(userId: string) {
+    establishConnectionForUser(userId: string) {
         const socket = new SockJS(this.userServerUrl);
         this.stompClient = Stomp.over(socket);
         const that = this;
@@ -96,7 +96,7 @@ export class MessageService {
         this.receiver = receiver;
     }
 
-    sendMessage(message: Message) {
+    sendMessageToUser(message: Message) {
         console.log('form message service');
         console.log(message);
         this.stompClient.send('/app/chat', {}, JSON.stringify(message));

@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
                 if (this.isValidated) {
                     this.messageService.clearMessages();
                     this.router.navigateByUrl('/dashboard');
-                    this.messageService.establishConnection(data.userId);
+                    this.messageService.establishConnectionForUser(data.userId);
                     this.userService.getUserDetailsById(data.userId)
                         .subscribe(user => {
                         this.messageService.setSender(user);

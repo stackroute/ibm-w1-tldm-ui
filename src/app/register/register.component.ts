@@ -64,7 +64,7 @@ export class RegisterComponent implements OnInit {
             this.userService.registerUser(this.user).subscribe(data => {
                 console.log('successfully registered ' + data.userName);
                 this.router.navigateByUrl('/dashboard');
-                this.messageService.establishConnection(data.userId);
+                this.messageService.establishConnectionForUser(data.userId);
                 this.messageService.setSender(this.user);
             });
         } else {
