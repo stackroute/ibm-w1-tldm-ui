@@ -19,7 +19,6 @@ export class ChannelService {
     channels: Channel[];
     user: User;
 
-
     baseUrl = 'http://172.23.239.233:8065/api/v1/channel';
 
     constructor(private httpClient: HttpClient) {
@@ -37,9 +36,14 @@ export class ChannelService {
         return this.httpClient.post<Channel>(this.baseUrl, channel, httpOptions);
     }
 
+
+    getAllChannelsByUserName(userName: string): Observable<Channel[]> {
+        return this.httpClient.get<Channel[]>(`${this.baseUrl}/users/${userName}`);
+    }
+
     // service method for getting list of channel in which a user is present
-    getAllChannelsByUserName(name: string): Observable<Channel[]> {
-        return this.httpClient.get<Channel[]>(`${this.baseUrl}/users/${name}`);
+    getAllChannelsByUserId(userId: string): Observable<Channel[]> {
+        return this.httpClient.get<Channel[]>(`${this.baseUrl}/users/${userId}`);
     }
 
     setChannel(channel: Channel) {

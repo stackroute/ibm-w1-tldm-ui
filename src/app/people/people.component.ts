@@ -40,6 +40,7 @@ export class PeopleComponent implements OnInit {
         this.userService.getUserDetailsById(userId).subscribe(data => {
             console.log(this.user = data);
             this.messageService.setReceiver(this.user);
+            this.messageService.displayName = true;
             this.messageService.getAllMessagesBySenderAndReceiver().subscribe(messages => {
                 console.log(this.messages = messages);
                 this.messageService.setMessages(this.messages);

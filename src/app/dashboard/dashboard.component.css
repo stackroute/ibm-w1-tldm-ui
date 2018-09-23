@@ -19,9 +19,6 @@ app-messages {
     right: 0;
 }
 
-.toolbar {
-    position: absolute;
-}
 .mat-toolbar {
     position: fixed;
     top: 0px;

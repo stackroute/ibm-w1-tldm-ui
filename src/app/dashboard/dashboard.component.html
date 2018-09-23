@@ -16,10 +16,10 @@
 
     <mat-sidenav-content class="main">
         <app-messages></app-messages>
-        <div *ngIf="messageService.receiver">
+        <div *ngIf="(messageService.receiver)||(messageService.isChannelActivated)">
             <app-chat-input></app-chat-input>
         </div>
-        <div class="toolbar">
+        <div>
             <mat-toolbar color="primary" class="mat-toolbar">
                 <mat-toolbar-row>
                     <button mat-icon-button (click)="sidenav.toggle()">
@@ -27,15 +27,26 @@
                             menu
                         </mat-icon>
                     </button>
-                    <div *ngIf="messageService.receiver">
+                    <ng-template #dashboard>
                         <span>
-                            {{messageService.receiver.userName}}
+                            Dashboard
                         </span>
+                    </ng-template>
+                    <div *ngIf="(messageService.displayName); else dashboard">
+                        <div *ngIf="(messageService.receiver); then user else channel"></div>
                     </div>
+                    <ng-template #user>
+                            <span>
+                                {{messageService.receiver.userName}}
+                            </span>
+                    </ng-template>
+                    <ng-template #channel>
+                            <span>
+                                {{channelService.channel.channelName}}
+                            </span>
+                    </ng-template>
 
-                    <!--<ng-template #recipientName><< Recipient name >></ng-template>-->
                     <span class="spacer"></span><!--spacer for space b/w icons-->
-                    <!--<ng-template #senderName><< Sender name >></ng-template>-->
                     <div class="button-row">
                         <button mat-icon-button (click)="logout()">
                             <mat-icon class="icon" matTooltip="Logout">exit_to_app</mat-icon>

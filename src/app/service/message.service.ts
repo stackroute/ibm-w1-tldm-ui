@@ -27,6 +27,7 @@ export class MessageService {
     receiver: User;
 
     isChannelActivated: boolean;
+    displayName: boolean;
 
     notification = new Notification(false, 'userId');
     displayMessage = new DisplayMessage(false, 'userId');

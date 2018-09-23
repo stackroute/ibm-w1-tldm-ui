@@ -10,7 +10,7 @@
             </mat-list-item>
         </strong>
         <div *ngFor="let channel of channels">
-            <mat-list-item>
+            <mat-list-item (click)="setupChannel(channel)">
                 {{channel.channelName}}
             </mat-list-item>
         </div>
