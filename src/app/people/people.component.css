@@ -1,3 +1,12 @@
 .spacer {
     flex: 1 1 auto;
 }
+
+.list {
+    text-align: center;
+}
+
+.notif-icon {
+    font-size: 16px;
+    color: darkred;
+}

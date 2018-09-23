@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {UserService} from '../user.service';
-import {User} from '../user';
-import {MessageService} from '../message.service';
+import {User} from '../model/user';
+import {Message} from '../model/message';
+import {UserService} from '../service/user.service';
+import {MessageService} from '../service/message.service';
 
 @Component({
     selector: 'app-people',
@@ -9,36 +10,40 @@ import {MessageService} from '../message.service';
     styleUrls: ['./people.component.css']
 })
 export class PeopleComponent implements OnInit {
+
     users: User[];
     user: User;
+    messages: Message[];
 
     constructor(private userService: UserService,
-                private messageService: MessageService) {
+                public messageService: MessageService) {
     }
 
     ngOnInit() {
         // fetching all users on component initialization
         this.userService.getAllUsers().subscribe((data: User[]) => {
-            this.users = data;
+            console.log(this.users = data);
         });
     }
 
     // setting sender value for front-end
-    setSender(name: string) {
-        this.userService.setSender(name);
-        this.userService.getUserDetailsByName(name).subscribe(data => {
+    setSender(userId: string) {
+        this.userService.getUserDetailsById(userId).subscribe(data => {
             console.log(this.user = data);
             this.messageService.setSender(this.user);
-            this.messageService.establishConnection(this.user.userId);
         });
     }
 
     // setting receiver value for front-end
-    setReceiver(name: string) {
-        this.userService.setReceiver(name);
-        this.userService.getUserDetailsByName(name).subscribe(data => {
+    setReceiver(userId: string) {
+        this.messageService.resetNotification();
+        this.userService.getUserDetailsById(userId).subscribe(data => {
             console.log(this.user = data);
             this.messageService.setReceiver(this.user);
+            this.messageService.getAllMessagesBySenderAndReceiver().subscribe(messages => {
+                console.log(this.messages = messages);
+                this.messageService.setMessages(this.messages);
+            });
         });
     }
 }

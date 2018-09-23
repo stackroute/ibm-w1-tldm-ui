@@ -1,0 +1,88 @@
+<div class="heading">
+    <h2>
+        Register
+    </h2>
+</div>
+<mat-divider></mat-divider>
+<mat-divider></mat-divider>
+<mat-divider></mat-divider>
+<br>
+<div>
+    <form [formGroup]="registerForm" (ngSubmit)="registerForm.valid && register(userId.value, userName.value, userMail.value, password.value, password2.value)" novalidate>
+        <div class="login-form">
+            <mat-form-field appearance="outline">
+                <mat-label>User ID</mat-label>
+                <input id="userId"
+                       matInput
+                       formControlName="userId"
+                       #userId
+                       placeholder="Enter your User ID">
+                <mat-error *ngIf="userId.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+            <br>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Full Name</mat-label>
+                <input id="userName"
+                       matInput
+                       formControlName="userName"
+                       #userName
+                       placeholder="Enter your Full Name">
+                <mat-error *ngIf="userName.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+            <br>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input id="email"
+                       matInput
+                       formControlName="email"
+                       #userMail
+                       placeholder="Enter your Email ID">
+                <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+            <br>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
+                <input id="password"
+                       matInput
+                       formControlName="password"
+                       #password
+                       placeholder="Enter your password"
+                       [type]="hide ? 'password':'text'">
+                <mat-icon matSuffix (click)="hide = !hide">
+                    {{hide ? 'visibility' : 'visibility_off'}}
+                </mat-icon>
+                <mat-error *ngIf="password.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+            <br>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Confirm Password</mat-label>
+                <input id="password2"
+                       matInput
+                       #password2
+                       formControlName="password2"
+                       placeholder="Confirm password"
+                       [type]="hide2 ? 'password':'text'">
+                <mat-icon matSuffix (click)="hide2 = !hide2">
+                    {{hide2 ? 'visibility' : 'visibility_off'}}
+                </mat-icon>
+                <mat-error *ngIf="password2.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+            <br>
+
+            <div class="button-row">
+                <button mat-raised-button
+                        color="primary"
+                        type="submit"
+                        [disabled]="!registerForm.valid"
+                        id="register">
+                    Register
+                </button>
+                <a mat-raised-button color="accent" routerLink="/login" id="login">Already registered? Login here</a>
+            </div>
+        </div>
+    </form>
+</div>

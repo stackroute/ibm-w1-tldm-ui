@@ -9,7 +9,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MainComponentComponent} from './main-component/main-component.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule, MatListModule, MatCardModule, MatTab, MatTabsModule} from '@angular/material';
+import {MatButtonModule, MatListModule, MatCardModule, MatSelectModule, MatFormFieldModule, MatTabsModule} from '@angular/material';
 import {MatCheckboxModule, MatTooltipModule} from '@angular/material';
 import {MatMenuModule} from '@angular/material/menu';
 import {MessagesComponent} from './messages/messages.component';
@@ -19,8 +19,13 @@ import {ToolbarComponent} from './toolbar/toolbar.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './/app-routing.module';
-import { InvitemembersComponent } from './invitemembers/invitemembers.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import {DashboardComponent} from './dashboard/dashboard.component';
+import {RegisterComponent} from './register/register.component';
+import {LoginComponent} from './login/login.component';
+import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {SortbyTimestampPipe} from './sortby-timestamp.pipe';
+import {ChannelPageComponent} from './channel-page/channel-page.component';
 
 @NgModule({
     declarations: [
@@ -32,9 +37,12 @@ import { DashboardComponent } from './dashboard/dashboard.component';
         MessagesComponent,
         ChatInputComponent,
         ToolbarComponent,
-        InvitemembersComponent,
         DashboardComponent,
-
+        RegisterComponent,
+        LoginComponent,
+        PageNotFoundComponent,
+        SortbyTimestampPipe,
+        ChannelPageComponent
     ],
     imports: [
         BrowserModule,
@@ -53,9 +61,26 @@ import { DashboardComponent } from './dashboard/dashboard.component';
         HttpClientModule,
         AppRoutingModule,
         ReactiveFormsModule,
+        MatSnackBarModule,
+        MatSelectModule,
+        BrowserAnimationsModule,
+        MatSidenavModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatButtonModule,
+        MatListModule,
+        MatCardModule,
+        MatCheckboxModule,
+        MatTooltipModule,
+        MatMenuModule,
+        MatInputModule,
+        MatSelectModule,
+        MatFormFieldModule,
+        FormsModule,
+        HttpClientModule,
+        AppRoutingModule,
+        ReactiveFormsModule,
         MatTabsModule,
-        
-
     ],
     providers: [],
     bootstrap: [AppComponent]
