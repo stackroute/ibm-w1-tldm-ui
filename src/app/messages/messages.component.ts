@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MessageService} from '../service/message.service';
+import {ChannelService} from '../service/channel.service';
 
 @Component({
     selector: 'app-messages',
@@ -8,7 +9,8 @@ import {MessageService} from '../service/message.service';
 })
 export class MessagesComponent implements OnInit {
 
-    constructor(public messageService: MessageService) {
+    constructor(public messageService: MessageService,
+                public channelService: ChannelService) {
     }
 
     ngOnInit() {

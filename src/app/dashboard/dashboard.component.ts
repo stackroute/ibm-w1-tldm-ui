@@ -22,8 +22,8 @@ export class DashboardComponent implements OnInit {
 
     logout() {
         this.messageService.clearMessages();
-        this.messageService.isChannelActivated = false;
         this.messageService.displayName = false;
+        this.channelService.isChannelActive = false;
         this.router.navigateByUrl('/login');
         this.messageService.disconnectUser();
     }
