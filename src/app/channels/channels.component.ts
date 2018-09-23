@@ -19,7 +19,7 @@ export class ChannelsComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.channelService.getAllChannelsByUserId(this.messageService.sender.userName).subscribe(data => {
+        this.channelService.getAllChannelsByUserId(this.messageService.sender.userId).subscribe(data => {
             console.log(this.channels = data);
             this.messageService.establishConnectionForChannel(this.channels);
         });
