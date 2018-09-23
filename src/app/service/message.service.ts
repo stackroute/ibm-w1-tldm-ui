@@ -119,7 +119,7 @@ export class MessageService {
     }
 
     sendMessageToUser(message: Message) {
-        console.log('form message service');
+        console.log('from message service');
         console.log(message);
         this.stompClientUser.send('/app/chat', {}, JSON.stringify(message));
     }

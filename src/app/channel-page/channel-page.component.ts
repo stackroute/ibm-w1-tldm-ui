@@ -17,8 +17,6 @@ export class ChannelPageComponent implements OnInit {
     users: User[];
     channelUsers: User[] = [];
 
-    checked = false;
-
     constructor(private channelService: ChannelService,
                 private communityService: CommunityService,
                 private messageService: MessageService,
@@ -43,8 +41,9 @@ export class ChannelPageComponent implements OnInit {
     }
 
     addUsers(user: User) {
-        if (this.checked) {
-            this.channelUsers.push(user);
-        }
+        this.channelUsers.push(user);
+        console.log('current list is');
+        console.log(this.channelUsers);
     }
 }
+
