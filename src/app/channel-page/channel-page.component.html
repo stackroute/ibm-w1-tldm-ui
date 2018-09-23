@@ -30,6 +30,7 @@
                     <mat-option *ngFor="let user of users"
                                 [value]="user.userName"
                                 [(ngModel)]="checked"
+                                [ngModelOptions]="{standalone: true}"
                                 (click)="addUsers(user)">
                         {{user.userName}}
                     </mat-option>
