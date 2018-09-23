@@ -29,6 +29,7 @@
                 <mat-select placeholder="Select Users" multiple>
                     <mat-option *ngFor="let user of users"
                                 [value]="user.userName"
+                                [(ngModel)]="checked"
                                 (click)="addUsers(user)">
                         {{user.userName}}
                     </mat-option>
