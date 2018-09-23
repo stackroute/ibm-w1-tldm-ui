@@ -24,6 +24,8 @@ export class MessageService {
 
     messagesArr: Message[] = [];
     messages: Message[] = [];
+
+    channelMessagesArr: ChannelMessage[];
     channelMessages: ChannelMessage[];
 
     sender: User;
@@ -44,7 +46,7 @@ export class MessageService {
         this.stompClientUser.connect({}, function (frame) {
             console.log('Connected: ' + frame);
             that.stompClientUser.subscribe(`/topic/response/${userId}`, function (message) {
-                that.showGreeting(JSON.parse(message.body));
+                that.showGreetingForUser(JSON.parse(message.body));
                 console.log(message.body);
             });
         });
@@ -58,7 +60,7 @@ export class MessageService {
             console.log('Connected: ' + frame);
             for (let i = 0; i < channelList.length; i++) {
                 that.stompClientChannel.subscribe(`/topic-group/response/${channelList[i].channelId}`, function (message) {
-                    that.showGreeting(JSON.parse(message.body));
+                    that.showGreetingForChannel(JSON.parse(message.body));
                 });
             }
         });
@@ -88,10 +90,16 @@ export class MessageService {
         console.log('Channel Disconnected');
     }
 
-    showGreeting(message) {
+    showGreetingForUser(message) {
         this.notification = new Notification(true, message.sender.userId);
         console.log(this.notification);
         this.messagesArr.push(message);
+    }
+
+    showGreetingForChannel(message) {
+        this.notification = new Notification(true, message.sender.userId);
+        console.log(this.notification);
+        this.channelMessagesArr.push(message);
     }
 
     getSender(): User {
@@ -156,6 +164,8 @@ export class MessageService {
     clearMessages() {
         this.messages = [];
         this.messagesArr = [];
+        this.channelMessages = [];
+        this.channelMessagesArr = [];
     }
 
     resetNotification() {
