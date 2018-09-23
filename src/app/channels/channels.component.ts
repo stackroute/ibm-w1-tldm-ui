@@ -27,7 +27,11 @@ export class ChannelsComponent implements OnInit {
 
     setupChannel(channel: Channel) {
         this.messageService.displayName = true;
-        this.messageService.isChannelActivated = true;
+        this.channelService.isChannelActive = true;
         this.channelService.setChannel(channel);
+
+        if (this.messageService.receiver) {
+            this.messageService.receiver = null;
+        }
     }
 }

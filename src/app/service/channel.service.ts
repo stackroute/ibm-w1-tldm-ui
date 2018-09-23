@@ -13,11 +13,14 @@ const httpOptions = {
     providedIn: 'root'
 })
 export class ChannelService {
+
     channelName: string;
     name: string;
     channel: Channel;
     channels: Channel[];
     user: User;
+
+    isChannelActive: boolean;
 
     baseUrl = 'http://172.23.239.233:8065/api/v1/channel';
 

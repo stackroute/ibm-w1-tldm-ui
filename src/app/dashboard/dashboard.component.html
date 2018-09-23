@@ -16,7 +16,7 @@
 
     <mat-sidenav-content class="main">
         <app-messages></app-messages>
-        <div *ngIf="(messageService.receiver)||(messageService.isChannelActivated)">
+        <div *ngIf="(messageService.receiver)||(channelService.isChannelActive)">
             <app-chat-input></app-chat-input>
         </div>
         <div>
@@ -32,7 +32,7 @@
                             Dashboard
                         </span>
                     </ng-template>
-                    <div *ngIf="(messageService.displayName); else dashboard">
+                    <div *ngIf="(messageService.displayName)||(channelService.isChannelActive); else dashboard">
                         <div *ngIf="(messageService.receiver); then user else channel"></div>
                     </div>
                     <ng-template #user>
