@@ -24,6 +24,7 @@ export class MessageService {
 
     messagesArr: Message[] = [];
     messages: Message[] = [];
+    channelMessages: ChannelMessage[];
 
     sender: User;
     receiver: User;
@@ -68,6 +69,10 @@ export class MessageService {
         console.log('from message service');
         console.log(this.receiver);
         return this.http.get<Message[]>(`http://172.23.239.104:8068/api/v1/message/${this.sender.userId}/${this.receiver.userId}`);
+    }
+
+    getAllMessagesByChannelId(channelId: string): Observable<ChannelMessage[]> {
+        return this.http.get<ChannelMessage[]>(`http://172.23.239.104:8068/api/v1/channel-message/${channelId}`);
     }
 
     disconnectUser() {
@@ -131,6 +136,22 @@ export class MessageService {
         });
 
         this.messages = messages;
+    }
+
+    setChannelMessages(channelMessages: ChannelMessage[]) {
+        this.clearMessages();
+
+        channelMessages.sort((message1, message2) => {
+            if (message1.timestamp < message2.timestamp) {
+                return -1;
+            } else if (message1.timestamp > message2.timestamp) {
+                return 1;
+            } else {
+                return 0;
+            }
+        });
+
+        this.channelMessages = channelMessages;
     }
 
     clearMessages() {

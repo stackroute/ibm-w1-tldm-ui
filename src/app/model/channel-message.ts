@@ -6,7 +6,7 @@ export class ChannelMessage {
     message_text: string;
     sender: User;
     channel: Channel;
-    sentDate: Date;
+    timestamp: Date;
 
     constructor(message_text: string, sender: User, channel: Channel) {
         this.message_text = message_text;
