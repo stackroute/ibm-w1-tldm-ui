@@ -18,7 +18,9 @@ export class MessageService {
 
     private userServerUrl = 'http://172.23.239.122:8067/user-web-socket';
     private channelServerUrl = 'http://172.23.239.122:8067/channel-web-socket';
-    private stompClient = null;
+    private stompClientUser = null;
+    private stompClientChannel = null;
+
 
     messagesArr: Message[] = [];
     messages: Message[] = [];
@@ -37,11 +39,11 @@ export class MessageService {
 
     establishConnectionForUser(userId: string) {
         const socket = new SockJS(this.userServerUrl);
-        this.stompClient = Stomp.over(socket);
+        this.stompClientUser = Stomp.over(socket);
         const that = this;
-        this.stompClient.connect({}, function (frame) {
+        this.stompClientUser.connect({}, function (frame) {
             console.log('Connected: ' + frame);
-            that.stompClient.subscribe(`/topic/response/${userId}`, function (message) {
+            that.stompClientUser.subscribe(`/topic/response/${userId}`, function (message) {
                 that.showGreeting(JSON.parse(message.body));
                 console.log(message.body);
             });
@@ -50,12 +52,12 @@ export class MessageService {
 
     establishConnectionForChannel(channelList: Channel[]) {
         const socket = new SockJS(this.channelServerUrl);
-        this.stompClient = Stomp.over(socket);
+        this.stompClientChannel = Stomp.over(socket);
         const that = this;
-        this.stompClient.connect({}, function (frame) {
+        this.stompClientChannel.connect({}, function (frame) {
             console.log('Connected: ' + frame);
             for (let i = 0; i < channelList.length; i++) {
-                that.stompClient.subscribe(`/topic-group/response/${channelList[i].channelId}`, function (message) {
+                that.stompClientChannel.subscribe(`/topic-group/response/${channelList[i].channelId}`, function (message) {
                     that.showGreeting(JSON.parse(message.body));
                 });
             }
@@ -68,11 +70,18 @@ export class MessageService {
         return this.http.get<Message[]>(`http://172.23.239.104:8068/api/v1/message/${this.sender.userId}/${this.receiver.userId}`);
     }
 
-    disconnect() {
-        if (this.stompClient !== null) {
-            this.stompClient.disconnect();
+    disconnectUser() {
+        if (this.stompClientUser !== null) {
+            this.stompClientUser.disconnect();
         }
-        console.log('Disconnected');
+        console.log('User Disconnected');
+    }
+
+    disconnectChannel() {
+        if (this.stompClientChannel !== null) {
+            this.stompClientChannel.disconnect();
+        }
+        console.log('Channel Disconnected');
     }
 
     showGreeting(message) {
@@ -100,12 +109,12 @@ export class MessageService {
     sendMessageToUser(message: Message) {
         console.log('form message service');
         console.log(message);
-        this.stompClient.send('/app/chat', {}, JSON.stringify(message));
+        this.stompClientUser.send('/app/chat', {}, JSON.stringify(message));
     }
 
     sendMessageToChannel(channelMessage: ChannelMessage) {
         console.log(channelMessage);
-        this.stompClient.send('/app/channel-chat', {}, JSON.stringify(channelMessage));
+        this.stompClientChannel.send('/app/channel-chat', {}, JSON.stringify(channelMessage));
     }
 
     setMessages(messages: Message[]) {

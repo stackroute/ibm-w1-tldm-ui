@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {MessageService} from '../service/message.service';
-import {User} from '../model/user';
 import {ChannelService} from '../service/channel.service';
 
 @Component({
@@ -26,7 +25,7 @@ export class DashboardComponent implements OnInit {
         this.messageService.isChannelActivated = false;
         this.messageService.displayName = false;
         this.router.navigateByUrl('/login');
-        this.messageService.disconnect();
+        this.messageService.disconnectUser();
     }
 
 }

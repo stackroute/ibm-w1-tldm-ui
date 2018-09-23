@@ -4,6 +4,7 @@ import {Channel} from '../model/channel';
 import {Router} from '@angular/router';
 import {ChannelService} from '../service/channel.service';
 import {CommunityService} from '../service/community.service';
+import {MessageService} from '../service/message.service';
 
 @Component({
     selector: 'app-channel-page',
@@ -18,6 +19,7 @@ export class ChannelPageComponent implements OnInit {
 
     constructor(private channelService: ChannelService,
                 private communityService: CommunityService,
+                private messageService: MessageService,
                 private router: Router) {
     }
 
@@ -32,6 +34,7 @@ export class ChannelPageComponent implements OnInit {
         this.channelService.createChannel(this.channel).subscribe(data => {
             console.log('created ' + data.channelName + ' successfully');
             console.log(data);
+            this.messageService.disconnectChannel();
             this.channelService.fetchChannels();
         });
         this.router.navigateByUrl('/dashboard');
