@@ -3,6 +3,7 @@ import {User} from '../model/user';
 import {Message} from '../model/message';
 import {UserService} from '../service/user.service';
 import {MessageService} from '../service/message.service';
+import {ChannelService} from '../service/channel.service';
 
 @Component({
     selector: 'app-people',
@@ -16,7 +17,8 @@ export class PeopleComponent implements OnInit {
     messages: Message[];
 
     constructor(private userService: UserService,
-                public messageService: MessageService) {
+                public messageService: MessageService,
+                private channelService: ChannelService) {
     }
 
     ngOnInit() {
@@ -36,6 +38,10 @@ export class PeopleComponent implements OnInit {
 
     // setting receiver value for front-end
     setReceiver(userId: string) {
+        if (this.channelService.isChannelActive) {
+            this.channelService.isChannelActive = false;
+        }
+
         this.messageService.resetNotification();
         this.userService.getUserDetailsById(userId).subscribe(data => {
             console.log(this.user = data);
