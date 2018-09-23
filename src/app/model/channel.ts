@@ -10,9 +10,10 @@ export class Channel {
     community: Community;
     channelUsers: User[];
 
-    constructor(channelName: string, channelDescription: string, channelUsers: User[]) {
+    constructor(channelName: string, channelDescription: string, channelUsers: User[], createdBy: string) {
         this.channelName = channelName;
         this.channelDescription = channelDescription;
         this.channelUsers = channelUsers;
+        this.createdBy = createdBy;
     }
 }

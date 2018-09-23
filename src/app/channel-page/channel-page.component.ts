@@ -32,7 +32,7 @@ export class ChannelPageComponent implements OnInit {
     }
 
     create(channelName: string, channelDescription: string) {
-        this.channel = new Channel(channelName, channelDescription, this.channelUsers);
+        this.channel = new Channel(channelName, channelDescription, this.channelUsers, this.messageService.sender.userName);
         this.channelService.createChannel(this.channel).subscribe(data => {
             console.log('created ' + data.channelName + ' successfully');
             console.log(data);
