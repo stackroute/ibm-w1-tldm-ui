@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {ChannelService} from '../service/channel.service';
 import {Channel} from '../model/channel';
 import {MessageService} from '../service/message.service';
+import {ChannelMessage} from '../model/channel-message';
 
 @Component({
     selector: 'app-channels',
@@ -12,6 +13,7 @@ import {MessageService} from '../service/message.service';
 export class ChannelsComponent implements OnInit {
 
     channels: Channel[];
+    channelMessages: ChannelMessage[];
 
     constructor(private router: Router,
                 public channelService: ChannelService,
@@ -29,7 +31,10 @@ export class ChannelsComponent implements OnInit {
         this.messageService.displayName = true;
         this.channelService.isChannelActive = true;
         this.channelService.setChannel(channel);
-
+        this.messageService.getAllMessagesByChannelId(channel.channelId).subscribe(data => {
+            console.log(this.channelMessages = data);
+            this.messageService.setChannelMessages(this.channelMessages);
+        });
         if (this.messageService.receiver) {
             this.messageService.receiver = null;
         }
