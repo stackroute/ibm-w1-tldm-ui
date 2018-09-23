@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Message} from '../model/message';
 import {MessageService} from '../service/message.service';
+import {ChannelService} from '../service/channel.service';
 
 @Component({
     selector: 'app-chat-input',
@@ -13,7 +14,7 @@ export class ChatInputComponent implements OnInit {
 
     message: Message;
 
-    constructor(private messageService: MessageService) {
+    constructor(private messageService: MessageService, private channelService: ChannelService) {
     }
 
     ngOnInit() {
@@ -21,9 +22,15 @@ export class ChatInputComponent implements OnInit {
 
     sendMessage(messageContent: string) {
         this.value = '';
-        if (messageContent !== '') {
-            this.message = new Message(messageContent, this.messageService.getSender(), this.messageService.getReceiver());
-            this.messageService.sendMessageToUser(this.message);
+        if (this.channelService.isChannelActive) {
+            if (messageContent !== '') {
+                //    add code to send message to channel
+            }
+        } else {
+            if (messageContent !== '') {
+                this.message = new Message(messageContent, this.messageService.getSender(), this.messageService.getReceiver());
+                this.messageService.sendMessageToUser(this.message);
+            }
         }
     }
 }
