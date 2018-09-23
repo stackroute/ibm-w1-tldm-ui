@@ -32,9 +32,9 @@ export class ChannelPageComponent implements OnInit {
         this.channelService.createChannel(this.channel).subscribe(data => {
             console.log('created ' + data.channelName + ' successfully');
             console.log(data);
+            this.channelService.fetchChannels();
         });
         this.router.navigateByUrl('/dashboard');
-        this.channelService.fetchChannels();
     }
 
     addUsers(user: User) {
