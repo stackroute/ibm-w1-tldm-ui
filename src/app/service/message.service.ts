@@ -38,8 +38,6 @@ export class MessageService {
     channelNotification = new ChannelNotification(false, 'channelId', 'senderId');
     displayMessage = new DisplayMessage(false, 'userId');
 
-    // channelId: string;
-
     constructor(private http: HttpClient) {
     }
 
@@ -71,8 +69,6 @@ export class MessageService {
     }
 
     getAllMessagesBySenderAndReceiver(): Observable<Message[]> {
-        console.log('from message service');
-        console.log(this.receiver);
         return this.http.get<Message[]>(`http://172.23.239.104:8068/api/v1/message/${this.sender.userId}/${this.receiver.userId}`);
     }
 
@@ -91,7 +87,6 @@ export class MessageService {
         if (this.stompClientChannel !== null) {
             this.stompClientChannel.disconnect();
         }
-        console.log('Channel Disconnected');
     }
 
     showGreetingForUser(message) {
@@ -123,13 +118,10 @@ export class MessageService {
     }
 
     sendMessageToUser(message: Message) {
-        console.log('from message service');
-        console.log(message);
         this.stompClientUser.send('/app/chat', {}, JSON.stringify(message));
     }
 
     sendMessageToChannel(channelMessage: ChannelMessage) {
-        console.log(channelMessage);
         this.stompClientChannel.send('/app/channel-chat', {}, JSON.stringify(channelMessage));
     }
 

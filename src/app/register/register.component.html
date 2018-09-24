@@ -8,7 +8,8 @@
 <mat-divider></mat-divider>
 <br>
 <div>
-    <form [formGroup]="registerForm" (ngSubmit)="registerForm.valid && register(userId.value, userName.value, userMail.value, password.value, password2.value)" novalidate>
+    <form [formGroup]="registerForm" (ngSubmit)="registerForm.valid
+    && register(userId.value, userName.value, userMail.value, password.value, password2.value)" novalidate>
         <div class="login-form">
             <mat-form-field appearance="outline">
                 <mat-label>User ID</mat-label>

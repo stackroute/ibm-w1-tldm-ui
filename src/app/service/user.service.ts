@@ -36,10 +36,6 @@ export class UserService {
         return this.httpClient.get<User[]>(`${this.baseUrl}/api/v1/user`);
     }
 
-    getUserDetailsByName(name: string): Observable<User> {
-        return this.httpClient.get<User>(`${this.baseUrl}/api/v1/user/name/${name}`);
-    }
-
     getUserDetailsById(userId: string): Observable<User> {
         return this.httpClient.get<User>(`${this.baseUrl}/api/v1/user/${userId}`);
     }

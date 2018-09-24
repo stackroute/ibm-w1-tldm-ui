@@ -12,9 +12,7 @@ import {ChannelMessage} from '../model/channel-message';
 export class ChatInputComponent implements OnInit {
 
     value = '';
-
     message: Message;
-
     channelMessage: ChannelMessage;
 
     constructor(private messageService: MessageService, private channelService: ChannelService) {

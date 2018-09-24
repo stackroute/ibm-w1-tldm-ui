@@ -12,7 +12,6 @@ import {ChannelMessage} from '../model/channel-message';
 })
 export class ChannelsComponent implements OnInit {
 
-    channels: Channel[];
     channelMessages: ChannelMessage[];
 
     constructor(private router: Router,
@@ -33,7 +32,7 @@ export class ChannelsComponent implements OnInit {
         this.channelService.isChannelActive = true;
         this.channelService.setChannel(channel);
         this.messageService.getAllMessagesByChannelId(channel.channelId).subscribe(data => {
-            console.log(this.channelMessages = data);
+            this.channelMessages = data;
             this.messageService.setChannelMessages(this.channelMessages);
         });
         if (this.messageService.receiver) {

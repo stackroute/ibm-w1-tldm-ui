@@ -33,7 +33,6 @@ export class ChannelPageComponent implements OnInit {
         this.channel = new Channel(channelName, channelDescription, this.channelUsers, this.messageService.sender.userName);
         this.channelService.createChannel(this.channel).subscribe(data => {
             console.log('created ' + data.channelName + ' successfully');
-            console.log(data);
             this.messageService.disconnectChannel();
             this.channelService.fetchChannels();
         });
@@ -42,8 +41,6 @@ export class ChannelPageComponent implements OnInit {
 
     addUsers(user: User) {
         this.channelUsers.push(user);
-        console.log('current list is');
-        console.log(this.channelUsers);
     }
 }
 

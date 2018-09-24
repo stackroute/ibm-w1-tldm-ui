@@ -28,14 +28,6 @@ export class PeopleComponent implements OnInit {
         });
     }
 
-    // setting sender value for front-end
-    setSender(userId: string) {
-        this.userService.getUserDetailsById(userId).subscribe(data => {
-            console.log(this.user = data);
-            this.messageService.setSender(this.user);
-        });
-    }
-
     // setting receiver value for front-end
     setReceiver(userId: string) {
         if (this.channelService.isChannelActive) {

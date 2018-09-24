@@ -13,7 +13,9 @@
             <mat-list-item (click)="setupChannel(channel)">
                 {{channel.channelName}}
                 <span class="spacer"></span>
-                <div *ngIf="(messageService.channelNotification.isActive)&&(messageService.channelNotification.channelId===channel.channelId)&&(messageService.sender.userId!==messageService.channelNotification.senderId)">
+                <div *ngIf="(messageService.channelNotification.isActive)
+                &&(messageService.channelNotification.channelId===channel.channelId)
+                &&(messageService.sender.userId!==messageService.channelNotification.senderId)">
                     <mat-icon class="notif-icon">
                         fiber_manual_record
                     </mat-icon>

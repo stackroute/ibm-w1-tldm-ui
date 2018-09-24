@@ -27,5 +27,4 @@ export class DashboardComponent implements OnInit {
         this.router.navigateByUrl('/login');
         this.messageService.disconnectUser();
     }
-
 }

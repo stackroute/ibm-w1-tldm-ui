@@ -14,7 +14,6 @@ const httpOptions = {
 })
 export class ChannelService {
 
-    channelName: string;
     name: string;
     channel: Channel;
     channels: Channel[];
@@ -40,11 +39,6 @@ export class ChannelService {
 
     createChannel(channel: Channel): Observable<Channel> {
         return this.httpClient.post<Channel>(this.baseUrl, channel, httpOptions);
-    }
-
-
-    getAllChannelsByUserName(userName: string): Observable<Channel[]> {
-        return this.httpClient.get<Channel[]>(`${this.baseUrl}/users/${userName}`);
     }
 
     // service method for getting list of channel in which a user is present
@@ -77,7 +71,7 @@ export class ChannelService {
 
     fetchChannels() {
         this.getAllChannelsByUserId(this.messageService.sender).subscribe(data => {
-            console.log(this.channels = data);
+            this.channels = data;
             this.messageService.establishConnectionForChannel(this.channels);
         });
     }

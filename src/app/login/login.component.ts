@@ -63,19 +63,14 @@ export class LoginComponent implements OnInit {
                             .subscribe(user => {
                                 this.messageService.setSender(user);
                                 this.channelService.fetchChannels();
-                                console.log('from login component');
-                                console.log(user);
                             });
                     }
                 },
                 (err: HttpErrorResponse) => {
-
                     this.errorMsg = err.error.message;
                     console.log('Backend Returned status code: ', err.status);
                     console.log('ResponseBody: ', err.error);
-
                 });
-        console.log(this.user);
     }
 
     getErrorMessage() {
