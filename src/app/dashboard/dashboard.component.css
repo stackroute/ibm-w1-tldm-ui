@@ -1,3 +1,7 @@
+h3 {
+    text-align: center;
+}
+
 app-chat-input {
     width: 100%;
     position: fixed;

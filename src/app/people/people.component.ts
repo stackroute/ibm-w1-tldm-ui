@@ -42,7 +42,7 @@ export class PeopleComponent implements OnInit {
             this.channelService.isChannelActive = false;
         }
 
-        this.messageService.resetNotification();
+        this.messageService.resetUserNotification();
         this.userService.getUserDetailsById(userId).subscribe(data => {
             console.log(this.user = data);
             this.messageService.setReceiver(this.user);

@@ -1,4 +1,4 @@
-export class Notification {
+export class UserNotification {
     isActive: boolean;
     userId: string;
 

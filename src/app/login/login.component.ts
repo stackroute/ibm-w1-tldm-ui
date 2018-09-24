@@ -6,6 +6,7 @@ import {AuthenticationService} from '../service/authentication.service';
 import {MessageService} from '../service/message.service';
 import {UserService} from '../service/user.service';
 import {ChannelService} from '../service/channel.service';
+import {HttpErrorResponse} from '@angular/common/http';
 
 @Component({
     selector: 'app-login',
@@ -20,6 +21,8 @@ export class LoginComponent implements OnInit {
     isValidated: boolean;
     userId = new FormControl('', [Validators.required]);
     password = new FormControl('', [Validators.required, Validators.minLength(6)]);
+
+    errorMsg: string;
 
     constructor(private authService: AuthenticationService,
                 private formBuilder: FormBuilder,
@@ -45,26 +48,33 @@ export class LoginComponent implements OnInit {
     login() {
         this.authService.login(this.user)
             .subscribe(data => {
-                // this.token.saveToken(data.token);
-                if (data.userId === this.user.userId) {
-                    this.isValidated = true;
-                    console.log('Welcome ' + data.userId);
-                } else {
-                    this.isValidated = false;
-                }
-                if (this.isValidated) {
-                    this.messageService.clearMessages();
-                    this.router.navigateByUrl('/dashboard');
-                    this.messageService.establishConnectionForUser(data.userId);
-                    this.userService.getUserDetailsById(data.userId)
-                        .subscribe(user => {
-                        this.messageService.setSender(user);
-                        this.channelService.fetchChannels();
-                        console.log('from login component');
-                        console.log(user);
-                    });
-                }
-            });
+                    // this.token.saveToken(data.token);
+                    if (data.userId === this.user.userId) {
+                        this.isValidated = true;
+                        console.log('Welcome ' + data.userId);
+                    } else {
+                        this.isValidated = false;
+                    }
+                    if (this.isValidated) {
+                        this.messageService.clearMessages();
+                        this.router.navigateByUrl('/dashboard');
+                        this.messageService.establishConnectionForUser(data.userId);
+                        this.userService.getUserDetailsById(data.userId)
+                            .subscribe(user => {
+                                this.messageService.setSender(user);
+                                this.channelService.fetchChannels();
+                                console.log('from login component');
+                                console.log(user);
+                            });
+                    }
+                },
+                (err: HttpErrorResponse) => {
+
+                    this.errorMsg = err.error.message;
+                    console.log('Backend Returned status code: ', err.status);
+                    console.log('ResponseBody: ', err.error);
+
+                });
         console.log(this.user);
     }
 

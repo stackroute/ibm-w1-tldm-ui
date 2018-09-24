@@ -34,6 +34,11 @@
             <mat-error *ngIf="password.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
         <br>
+
+        <p>
+            {{errorMsg}}
+        </p>
+
         <div class="button-row">
             <button mat-raised-button color="primary" id="login">Login</button>
             <a mat-raised-button color="accent" routerLink="/register" id="register">New user? Register here</a>

@@ -1,16 +1,16 @@
 <mat-sidenav-container class="example-container" autosize>
     <mat-sidenav #sidenav mode="side"
                  [(opened)]="opened">
-        <h2>
-            <strong>
-                <button class="mat-h1" mat-button [matMenuTriggerFor]="menu">Community name</button>
-            </strong>
-            <mat-menu #menu="matMenu">
-                <!--implement for loop for multiple communities-->
-                <button mat-menu-item class="community"><< Community name >></button>
-            </mat-menu>
-        </h2>
-        <hr>
+        <!--<h2>-->
+            <!--<strong>-->
+                <!--<button class="mat-h1" mat-button [matMenuTriggerFor]="menu">Community name</button>-->
+            <!--</strong>-->
+            <!--<mat-menu #menu="matMenu">-->
+                <!--&lt;!&ndash;implement for loop for multiple communities&ndash;&gt;-->
+                <!--<button mat-menu-item class="community"><< Community name >></button>-->
+            <!--</mat-menu>-->
+        <!--</h2>-->
+        <!--<hr>-->
         <app-sidebar-component></app-sidebar-component>
     </mat-sidenav>
 
@@ -29,7 +29,7 @@
                     </button>
                     <ng-template #dashboard>
                         <span>
-                            Dashboard
+                            Welcome, {{messageService.sender.userName}}
                         </span>
                     </ng-template>
                     <div *ngIf="(messageService.displayName)||(channelService.isChannelActive); else dashboard">

@@ -17,7 +17,7 @@ export class ChannelsComponent implements OnInit {
 
     constructor(private router: Router,
                 public channelService: ChannelService,
-                private messageService: MessageService) {
+                public messageService: MessageService) {
     }
 
     ngOnInit() {
@@ -28,6 +28,7 @@ export class ChannelsComponent implements OnInit {
     }
 
     setupChannel(channel: Channel) {
+        this.messageService.resetChannelNotification();
         this.messageService.displayName = true;
         this.channelService.isChannelActive = true;
         this.channelService.setChannel(channel);

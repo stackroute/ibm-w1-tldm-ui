@@ -5,10 +5,11 @@ import {Message} from '../model/message';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {User} from '../model/user';
-import {Notification} from '../model/notification';
+import {UserNotification} from '../model/user-notification';
 import {DisplayMessage} from '../model/display-message';
 import {Channel} from '../model/channel';
 import {ChannelMessage} from '../model/channel-message';
+import {ChannelNotification} from '../model/channel-notification';
 
 
 @Injectable({
@@ -33,8 +34,11 @@ export class MessageService {
 
     displayName: boolean;
 
-    notification = new Notification(false, 'userId');
+    userNotification = new UserNotification(false, 'userId');
+    channelNotification = new ChannelNotification(false, 'channelId', 'senderId');
     displayMessage = new DisplayMessage(false, 'userId');
+
+    // channelId: string;
 
     constructor(private http: HttpClient) {
     }
@@ -91,14 +95,14 @@ export class MessageService {
     }
 
     showGreetingForUser(message) {
-        this.notification = new Notification(true, message.sender.userId);
-        console.log(this.notification);
+        this.userNotification = new UserNotification(true, message.sender.userId);
+        console.log(this.userNotification);
         this.messagesArr.push(message);
     }
 
     showGreetingForChannel(message) {
-        this.notification = new Notification(true, message.sender.userId);
-        console.log(this.notification);
+        this.channelNotification = new ChannelNotification(true, message.channel.channelId, message.sender.userId);
+        console.log(this.userNotification);
         this.channelMessagesArr.push(message);
     }
 
@@ -168,8 +172,12 @@ export class MessageService {
         this.channelMessagesArr = [];
     }
 
-    resetNotification() {
-        this.notification.isActive = false;
+    resetUserNotification() {
+        this.userNotification.isActive = false;
+    }
+
+    resetChannelNotification() {
+        this.channelNotification.isActive = false;
     }
 
     setDisplayMessage(userId: string) {
