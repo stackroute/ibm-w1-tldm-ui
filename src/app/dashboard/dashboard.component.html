@@ -6,7 +6,7 @@
 
     <mat-sidenav-content class="main">
         <app-messages></app-messages>
-        <div *ngIf="(messageService.receiver)||(channelService.isChannelActive)">
+        <div *ngIf="(messageService.receiver)||(channelService.isChannelActive); else splash">
             <app-chat-input></app-chat-input>
         </div>
         <div>

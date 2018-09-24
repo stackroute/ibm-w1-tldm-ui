@@ -1,41 +1,14 @@
 <!--implement for loop here for multiple messages-->
 
-<div *ngIf="(channelService.isChannelActive); then channel else user"></div>
+<div *ngIf="((messageService.receiver)||(channelService.isChannelActive)); else splash">
+    <div *ngIf="(channelService.isChannelActive); then channel else user"></div>
 
-<!--this template displays channel perspective messages-->
-<ng-template #channel>
-    <div class="message-area">
-        <!--div for displaying messages fetched from database-->
-        <div class="database">
-            <div *ngFor="let msg of messageService.channelMessages">
-                <div [className]="msg.sender.userId===messageService.sender.userId?'channel-outgoing':'channel-incoming'">
-                    <mat-card>
-                        <mat-card-header>
-                            <mat-card-title>
-                                {{msg.sender.userName}}
-                            </mat-card-title>
-                        </mat-card-header>
-                        <mat-card-content>
-                            <div class="messages">
-                                <p>
-                                    {{msg.messageContent}}
-                                </p>
-                            </div>
-                            <mat-divider></mat-divider>
-                            <br>
-                            <div class="time-stamp">
-                                {{msg.timestamp| date:'shortTime'}}
-                            </div>
-                        </mat-card-content>
-                    </mat-card>
-                </div>
-            </div>
-        </div>
-
-        <!--div for displaying broadcasted messages-->
-        <div class="socket">
-            <div *ngFor="let msg of messageService.channelMessagesArr">
-                <div *ngIf="channelService.isAllowedForChannel">
+    <!--this template displays channel perspective messages-->
+    <ng-template #channel>
+        <div class="message-area">
+            <!--div for displaying messages fetched from database-->
+            <div class="database">
+                <div *ngFor="let msg of messageService.channelMessages">
                     <div [className]="msg.sender.userId===messageService.sender.userId?'channel-outgoing':'channel-incoming'">
                         <mat-card>
                             <mat-card-header>
@@ -59,53 +32,92 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</ng-template>
 
-<!--this template displays user perspective messages-->
-<ng-template #user>
-    <div class="message-area">
-        <!--div for displaying messages fetched from database-->
-        <div *ngIf="messageService.messages">
-            <div *ngFor="let message of messageService.messages">
-                <div [className]="message.sender.userId===messageService.sender.userId?'sender':'recipient'">
-                    <mat-card>
-                        <div class="messages">
-                            <p>
-                                {{message.messageContent}}
-                            </p>
+            <!--div for displaying broadcasted messages-->
+            <div class="socket">
+                <div *ngFor="let msg of messageService.channelMessagesArr">
+                    <div *ngIf="channelService.isAllowedForChannel">
+                        <div [className]="msg.sender.userId===messageService.sender.userId?'channel-outgoing':'channel-incoming'">
+                            <mat-card>
+                                <mat-card-header>
+                                    <mat-card-title>
+                                        {{msg.sender.userName}}
+                                    </mat-card-title>
+                                </mat-card-header>
+                                <mat-card-content>
+                                    <div class="messages">
+                                        <p>
+                                            {{msg.messageContent}}
+                                        </p>
+                                    </div>
+                                    <mat-divider></mat-divider>
+                                    <br>
+                                    <div class="time-stamp">
+                                        {{msg.timestamp| date:'shortTime'}}
+                                    </div>
+                                </mat-card-content>
+                            </mat-card>
                         </div>
-                        <mat-divider></mat-divider>
-                        <br>
-                        <div class="time-stamp">
-                            {{message.timestamp| date:'shortTime'}}
-                        </div>
-                    </mat-card>
+                    </div>
                 </div>
             </div>
         </div>
+    </ng-template>
 
-        <!--div for displaying broadcast messages-->
-        <div *ngIf="(messageService.displayMessage.isDisplayed)&&(messageService.displayMessage.userId===messageService.receiver.userId)">
-            <div *ngFor="let msg of messageService.messagesArr">
-                <div *ngIf="(msg.sender.userId===messageService.sender.userId)||(msg.receiver.userId===messageService.sender.userId)">
-                    <div [className]="msg.sender.userId===messageService.sender.userId?'sender':'recipient'">
+    <!--this template displays user perspective messages-->
+    <ng-template #user>
+        <div class="message-area">
+            <!--div for displaying messages fetched from database-->
+            <div *ngIf="messageService.messages">
+                <div *ngFor="let message of messageService.messages">
+                    <div [className]="message.sender.userId===messageService.sender.userId?'sender':'recipient'">
                         <mat-card>
                             <div class="messages">
                                 <p>
-                                    {{msg.messageContent}}
+                                    {{message.messageContent}}
                                 </p>
                             </div>
                             <mat-divider></mat-divider>
                             <br>
                             <div class="time-stamp">
-                                {{msg.timestamp| date:'shortTime'}}
+                                {{message.timestamp| date:'shortTime'}}
                             </div>
                         </mat-card>
                     </div>
                 </div>
             </div>
+
+            <!--div for displaying broadcast messages-->
+            <div *ngIf="(messageService.displayMessage.isDisplayed)&&(messageService.displayMessage.userId===messageService.receiver.userId)">
+                <div *ngFor="let msg of messageService.messagesArr">
+                    <div *ngIf="(msg.sender.userId===messageService.sender.userId)||(msg.receiver.userId===messageService.sender.userId)">
+                        <div [className]="msg.sender.userId===messageService.sender.userId?'sender':'recipient'">
+                            <mat-card>
+                                <div class="messages">
+                                    <p>
+                                        {{msg.messageContent}}
+                                    </p>
+                                </div>
+                                <mat-divider></mat-divider>
+                                <br>
+                                <div class="time-stamp">
+                                    {{msg.timestamp| date:'shortTime'}}
+                                </div>
+                            </mat-card>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </ng-template>
+</div>
+
+<ng-template #splash>
+<div class="splash">
+    <p>
+        hi there
+    </p>
+</div>
 </ng-template>
+
+

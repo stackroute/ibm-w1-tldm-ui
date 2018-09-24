@@ -8,7 +8,6 @@ export class ChannelMessage {
     channel: Channel;
     timestamp: Date;
 
-
     constructor(messageContent: string, sender: User, channel: Channel) {
         this.messageContent = messageContent;
         this.sender = sender;

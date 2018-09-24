@@ -1,3 +1,16 @@
+.splash {
+    margin-top: 800px;
+    padding: 8px;
+    height: 47%;
+}
+
+.splash p {
+    font-size: 80px;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
 .message-area {
     margin-top: 72px;
     margin-bottom: 100px;

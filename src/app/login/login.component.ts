@@ -7,6 +7,7 @@ import {MessageService} from '../service/message.service';
 import {UserService} from '../service/user.service';
 import {ChannelService} from '../service/channel.service';
 import {HttpErrorResponse} from '@angular/common/http';
+import {TokenStorage} from '../service/token-storage.service';
 
 @Component({
     selector: 'app-login',
@@ -29,7 +30,8 @@ export class LoginComponent implements OnInit {
                 private router: Router,
                 private messageService: MessageService,
                 private userService: UserService,
-                private channelService: ChannelService) {
+                private channelService: ChannelService,
+                private tokenStorage: TokenStorage) {
     }
 
     ngOnInit() {
@@ -49,7 +51,7 @@ export class LoginComponent implements OnInit {
     login() {
         this.authService.login(this.user)
             .subscribe(data => {
-                    // this.token.saveToken(data.token);
+                    this.tokenStorage.saveToken(data.token, data.userId);
                     if (data.userId === this.user.userId) {
                         this.isValidated = true;
                         console.log('Welcome ' + data.userId);
@@ -59,12 +61,6 @@ export class LoginComponent implements OnInit {
                     if (this.isValidated) {
                         this.messageService.clearMessages();
                         this.router.navigateByUrl('/dashboard');
-                        this.messageService.establishConnectionForUser(data.userId);
-                        this.userService.getUserDetailsById(data.userId)
-                            .subscribe(user => {
-                                this.messageService.setSender(user);
-                                this.channelService.fetchChannels();
-                            });
                     }
                 },
                 (err: HttpErrorResponse) => {
