@@ -1,0 +1,9 @@
+$tldm-theme-primary: mat-palette($mat-grey, 50, 100, 200);
+$tldm-theme-secondary: mat-palette($mat-deep-purple, 800, 400, 900);
+$tldm-theme-warn: mat-palette($mat-deep-orange, 800);
+
+$tldm-theme: mat-light-theme(
+                $tldm-theme-primary,
+                $tldm-theme-secondary,
+                $tldm-theme-warn
+);
