@@ -4,16 +4,16 @@ import {User} from './user';
 export class Channel {
     channelId: string;
     channelName: string;
-    createdBy: string;
+    channelCreatedBy: string;
     channelDescription: string;
     channelCreatedDate: string;
     community: Community;
     channelUsers: User[];
 
-    constructor(channelName: string, channelDescription: string, channelUsers: User[], createdBy: string) {
+    constructor(channelName: string, channelDescription: string, channelUsers: User[], channelCreatedBy: string) {
         this.channelName = channelName;
         this.channelDescription = channelDescription;
         this.channelUsers = channelUsers;
-        this.createdBy = createdBy;
+        this.channelCreatedBy = channelCreatedBy;
     }
 }
