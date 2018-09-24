@@ -22,11 +22,16 @@ export class MessageService {
     private stompClientUser = null;
     private stompClientChannel = null;
 
-
+    // incoming message data coming from web-socket being stored in this array.
     messagesArr: Message[] = [];
+
+    // messages fetched from DB being stored in this array.
     messages: Message[] = [];
 
+    // incoming channel-message data coming from web-socket being stored in this array.
     channelMessagesArr: ChannelMessage[];
+
+    // channel-messages fetched from DB being stored in this array.
     channelMessages: ChannelMessage[];
 
     sender: User;
@@ -34,13 +39,19 @@ export class MessageService {
 
     displayName: boolean;
 
+    // display notification for messages for user.
     userNotification = new UserNotification(false, 'userId');
+
+    // display notification for messages for channel.
     channelNotification = new ChannelNotification(false, 'channelId', 'senderId');
+
+    // setting property for displaying messages to the particular receiver.
     displayMessage = new DisplayMessage(false, 'userId');
 
     constructor(private http: HttpClient) {
     }
 
+    // establishing web-socket connection for user.
     establishConnectionForUser(userId: string) {
         const socket = new SockJS(this.userServerUrl);
         this.stompClientUser = Stomp.over(socket);
@@ -54,6 +65,7 @@ export class MessageService {
         });
     }
 
+    // establishing web-socket connection for channel.
     establishConnectionForChannel(channelList: Channel[]) {
         const socket = new SockJS(this.channelServerUrl);
         this.stompClientChannel = Stomp.over(socket);
@@ -68,14 +80,17 @@ export class MessageService {
         });
     }
 
+    // conversation between sender and receiver
     getAllMessagesBySenderAndReceiver(): Observable<Message[]> {
         return this.http.get<Message[]>(`http://172.23.239.104:8068/api/v1/message/${this.sender.userId}/${this.receiver.userId}`);
     }
 
+    // conversation between a channel
     getAllMessagesByChannelId(channelId: string): Observable<ChannelMessage[]> {
         return this.http.get<ChannelMessage[]>(`http://172.23.239.104:8068/api/v1/channel-message/${channelId}`);
     }
 
+    // called at the time of logout.
     disconnectUser() {
         if (this.stompClientUser !== null) {
             this.stompClientUser.disconnect();
@@ -83,17 +98,20 @@ export class MessageService {
         console.log('User Disconnected');
     }
 
+    // called at the time when the user created a new channel, so that the old connection disconnects for the new one to get established.
     disconnectChannel() {
         if (this.stompClientChannel !== null) {
             this.stompClientChannel.disconnect();
         }
     }
 
+    // incoming messages from user-web-socket
     showGreetingForUser(message) {
         this.userNotification = new UserNotification(true, message.sender.userId);
         this.messagesArr.push(message);
     }
 
+    // incoming messages from channel-web-socket
     showGreetingForChannel(message) {
         this.channelNotification = new ChannelNotification(true, message.channel.channelId, message.sender.userId);
         this.channelMessagesArr.push(message);
@@ -115,14 +133,17 @@ export class MessageService {
         this.receiver = receiver;
     }
 
+    // send message to @MessageMapping destination end-point for user.
     sendMessageToUser(message: Message) {
         this.stompClientUser.send('/app/chat', {}, JSON.stringify(message));
     }
 
+    // send message to @MessageMapping destination end-point for channel.
     sendMessageToChannel(channelMessage: ChannelMessage) {
         this.stompClientChannel.send('/app/channel-chat', {}, JSON.stringify(channelMessage));
     }
 
+    // sort messages on time-stamp for user.
     setMessages(messages: Message[]) {
         this.clearMessages();
 
@@ -139,6 +160,7 @@ export class MessageService {
         this.messages = messages;
     }
 
+    // sort messages on time-stamp for channel.
     setChannelMessages(channelMessages: ChannelMessage[]) {
         this.clearMessages();
 
@@ -155,6 +177,7 @@ export class MessageService {
         this.channelMessages = channelMessages;
     }
 
+    // clear all the arrays.
     clearMessages() {
         this.messages = [];
         this.messagesArr = [];
