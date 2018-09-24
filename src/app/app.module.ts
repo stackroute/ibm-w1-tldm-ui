@@ -6,7 +6,6 @@ import {SidebarComponentComponent} from './sidebar-component/sidebar-component.c
 import {ChannelsComponent} from './channels/channels.component';
 import {PeopleComponent} from './people/people.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
-import {MainComponentComponent} from './main-component/main-component.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule, MatListModule, MatCardModule, MatSelectModule, MatFormFieldModule, MatTabsModule} from '@angular/material';
@@ -30,7 +29,6 @@ import {ChannelPageComponent} from './channel-page/channel-page.component';
 @NgModule({
     declarations: [
         AppComponent,
-        MainComponentComponent,
         SidebarComponentComponent,
         ChannelsComponent,
         PeopleComponent,

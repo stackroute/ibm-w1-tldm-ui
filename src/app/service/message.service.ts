@@ -91,13 +91,11 @@ export class MessageService {
 
     showGreetingForUser(message) {
         this.userNotification = new UserNotification(true, message.sender.userId);
-        console.log(this.userNotification);
         this.messagesArr.push(message);
     }
 
     showGreetingForChannel(message) {
         this.channelNotification = new ChannelNotification(true, message.channel.channelId, message.sender.userId);
-        console.log(this.userNotification);
         this.channelMessagesArr.push(message);
     }
 
