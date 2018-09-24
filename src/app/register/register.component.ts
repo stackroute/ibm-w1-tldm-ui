@@ -13,9 +13,7 @@ import {UserService} from '../service/user.service';
 })
 export class RegisterComponent implements OnInit {
 
-    authUser: User;
     user: User;
-    registerForm: FormGroup;
     hide = true;
     hide2 = true;
     userId = new FormControl('', [Validators.required]);
