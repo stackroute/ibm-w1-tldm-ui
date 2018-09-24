@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {RegisterUser} from '../model/register-user';
 import {AuthenticationService} from '../service/authentication.service';
 import {Router} from '@angular/router';
 import {MessageService} from '../service/message.service';
@@ -34,33 +33,15 @@ export class RegisterComponent implements OnInit {
     }
 
     ngOnInit() {
-        // this.registerForm = this.formBuilder.group({
-        //     'userId': [this.authUser.userId, [
-        //         Validators.required,
-        //         Validators.minLength(3)
-        //     ]],
-        //     'email': [this.authUser.userMail, [
-        //         Validators.required,
-        //         Validators.email
-        //     ]],
-        //     'password': [this.authUser.password, [
-        //         Validators.required,
-        //         Validators.minLength(6)
-        //     ]],
-        //     'password2': [this.authUser.password, [
-        //         Validators.required,
-        //         Validators.minLength(6)
-        //     ]]
-        // });
     }
 
     register(userId, userName, userMail, password, password2) {
         this.user = new User(userId, userName, password, userMail);
         if (password === password2) {
-            this.userService.registerUser(this.user).subscribe(data => {
-                console.log('successfully registered ' + data.userName);
-                this.router.navigateByUrl('/dashboard');
+            this.authService.register(this.user).subscribe(data => {
+                console.log('successfully registred ' + data.userName);
                 this.messageService.establishConnectionForUser(data.userId);
+                this.router.navigateByUrl('/dashboard');
                 this.messageService.setSender(this.user);
             });
         } else {
