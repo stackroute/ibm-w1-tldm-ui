@@ -22,7 +22,7 @@ export class PeopleComponent implements OnInit {
     }
 
     ngOnInit() {
-        // fetching all users on component initialization
+        // fetching list of all users on component initialization
         this.userService.getAllUsers().subscribe((data: User[]) => {
             console.log(this.users = data);
         });

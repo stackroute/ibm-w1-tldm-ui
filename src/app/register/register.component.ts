@@ -14,7 +14,7 @@ import {UserService} from '../service/user.service';
 })
 export class RegisterComponent implements OnInit {
 
-    authUser: RegisterUser = new RegisterUser();
+    authUser: User;
     user: User;
     registerForm: FormGroup;
     hide = true;
@@ -25,7 +25,6 @@ export class RegisterComponent implements OnInit {
     email = new FormControl('', [Validators.required, Validators.email]);
     password = new FormControl('', [Validators.required, Validators.minLength(6)]);
     password2 = new FormControl('', [Validators.required, Validators.minLength(6)]);
-    registerSuccess: boolean;
 
     constructor(private authService: AuthenticationService,
                 private userService: UserService,
@@ -35,27 +34,24 @@ export class RegisterComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.registerForm = this.formBuilder.group({
-            'userId': [this.authUser.userId, [
-                Validators.required,
-                Validators.minLength(3)
-            ]],
-            'userName': [this.userName, [
-                Validators.required
-            ]],
-            'email': [this.authUser.email, [
-                Validators.required,
-                Validators.email
-            ]],
-            'password': [this.authUser.password, [
-                Validators.required,
-                Validators.minLength(6)
-            ]],
-            'password2': [this.authUser.password, [
-                Validators.required,
-                Validators.minLength(6)
-            ]]
-        });
+        // this.registerForm = this.formBuilder.group({
+        //     'userId': [this.authUser.userId, [
+        //         Validators.required,
+        //         Validators.minLength(3)
+        //     ]],
+        //     'email': [this.authUser.userMail, [
+        //         Validators.required,
+        //         Validators.email
+        //     ]],
+        //     'password': [this.authUser.password, [
+        //         Validators.required,
+        //         Validators.minLength(6)
+        //     ]],
+        //     'password2': [this.authUser.password, [
+        //         Validators.required,
+        //         Validators.minLength(6)
+        //     ]]
+        // });
     }
 
     register(userId, userName, userMail, password, password2) {

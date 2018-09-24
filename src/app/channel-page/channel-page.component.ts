@@ -24,11 +24,13 @@ export class ChannelPageComponent implements OnInit {
     }
 
     ngOnInit() {
+        // fetching list of all users for adding to channel
         this.communityService.getAllCommunityUsers().subscribe((data: User[]) => {
             this.users = data;
         });
     }
 
+    // creating the channel
     create(channelName: string, channelDescription: string) {
         this.channel = new Channel(channelName, channelDescription, this.channelUsers, this.messageService.sender.userName);
         this.channelService.createChannel(this.channel).subscribe(data => {
@@ -39,6 +41,7 @@ export class ChannelPageComponent implements OnInit {
         this.router.navigateByUrl('/dashboard');
     }
 
+    // constructing list of users to be added to channel
     addUsers(user: User) {
         this.channelUsers.push(user);
     }

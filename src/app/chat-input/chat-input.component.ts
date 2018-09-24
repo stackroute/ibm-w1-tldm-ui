@@ -21,6 +21,7 @@ export class ChatInputComponent implements OnInit {
     ngOnInit() {
     }
 
+    // sending the message to the web-socket depending on channel-perspective or user-perspective
     sendMessage(messageContent: string) {
         this.value = '';
         if (this.channelService.isChannelActive) {

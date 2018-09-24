@@ -8,14 +8,12 @@
 <mat-divider></mat-divider>
 <br>
 <div>
-    <form [formGroup]="registerForm" (ngSubmit)="registerForm.valid
-    && register(userId.value, userName.value, userMail.value, password.value, password2.value)" novalidate>
+    <form (ngSubmit)="register(userId.value, userName.value, userMail.value, password.value, password2.value)" novalidate>
         <div class="login-form">
             <mat-form-field appearance="outline">
                 <mat-label>User ID</mat-label>
                 <input id="userId"
                        matInput
-                       formControlName="userId"
                        #userId
                        placeholder="Enter your User ID">
                 <mat-error *ngIf="userId.invalid">{{getErrorMessage()}}</mat-error>
@@ -26,7 +24,6 @@
                 <mat-label>Full Name</mat-label>
                 <input id="userName"
                        matInput
-                       formControlName="userName"
                        #userName
                        placeholder="Enter your Full Name">
                 <mat-error *ngIf="userName.invalid">{{getErrorMessage()}}</mat-error>
@@ -37,7 +34,6 @@
                 <mat-label>Email</mat-label>
                 <input id="email"
                        matInput
-                       formControlName="email"
                        #userMail
                        placeholder="Enter your Email ID">
                 <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
@@ -48,7 +44,6 @@
                 <mat-label>Password</mat-label>
                 <input id="password"
                        matInput
-                       formControlName="password"
                        #password
                        placeholder="Enter your password"
                        [type]="hide ? 'password':'text'">
@@ -64,7 +59,6 @@
                 <input id="password2"
                        matInput
                        #password2
-                       formControlName="password2"
                        placeholder="Confirm password"
                        [type]="hide2 ? 'password':'text'">
                 <mat-icon matSuffix (click)="hide2 = !hide2">
@@ -78,7 +72,6 @@
                 <button mat-raised-button
                         color="primary"
                         type="submit"
-                        [disabled]="!registerForm.valid"
                         id="register">
                     Register
                 </button>

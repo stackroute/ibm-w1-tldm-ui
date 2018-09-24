@@ -45,6 +45,7 @@ export class LoginComponent implements OnInit {
         });
     }
 
+    // logging in a user
     login() {
         this.authService.login(this.user)
             .subscribe(data => {
@@ -73,6 +74,7 @@ export class LoginComponent implements OnInit {
                 });
     }
 
+    // error messages on form validation
     getErrorMessage() {
         return this.userId.hasError('required') ? 'Cannot be left empty' :
             this.password.hasError('required') ? 'Cannot be left empty' :

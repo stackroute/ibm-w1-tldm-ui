@@ -20,6 +20,7 @@ export class DashboardComponent implements OnInit {
     ngOnInit() {
     }
 
+    // logging out and clearing/resetting all required variables
     logout() {
         this.messageService.clearMessages();
         this.messageService.displayName = false;

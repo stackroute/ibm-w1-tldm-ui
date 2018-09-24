@@ -29,23 +29,6 @@ export class ChannelService {
                 private messageService: MessageService) {
     }
 
-    getAllChannels(): Observable<Channel[]> {
-        return this.httpClient.get<Channel[]>(this.baseUrl);
-    }
-
-    getChannelDetailByChannelName(name: string): Observable<Channel> {
-        return this.httpClient.get<Channel>(`${this.baseUrl}/${name}`);
-    }
-
-    createChannel(channel: Channel): Observable<Channel> {
-        return this.httpClient.post<Channel>(this.baseUrl, channel, httpOptions);
-    }
-
-    // service method for getting list of channel in which a user is present
-    getAllChannelsByUserId(user: User): Observable<Channel[]> {
-        return this.httpClient.get<Channel[]>(`${this.baseUrl}/users/${user.userId}`);
-    }
-
     setChannel(channel: Channel) {
         this.channel = channel;
 
@@ -69,6 +52,25 @@ export class ChannelService {
 
     }
 
+    getAllChannels(): Observable<Channel[]> {
+        return this.httpClient.get<Channel[]>(this.baseUrl);
+    }
+
+    getChannelDetailByChannelName(name: string): Observable<Channel> {
+        return this.httpClient.get<Channel>(`${this.baseUrl}/${name}`);
+    }
+
+    // creating a channel
+    createChannel(channel: Channel): Observable<Channel> {
+        return this.httpClient.post<Channel>(this.baseUrl, channel, httpOptions);
+    }
+
+    // fetching list of all channels that a user is a part of
+    getAllChannelsByUserId(user: User): Observable<Channel[]> {
+        return this.httpClient.get<Channel[]>(`${this.baseUrl}/users/${user.userId}`);
+    }
+
+    // fetching and setting channels object for ui
     fetchChannels() {
         this.getAllChannelsByUserId(this.messageService.sender).subscribe(data => {
             this.channels = data;

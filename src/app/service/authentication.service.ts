@@ -18,10 +18,12 @@ export class AuthenticationService {
     constructor(private http: HttpClient) {
     }
 
+    // registering a user
     register(registerUser: RegisterUser): Observable<RegisterUser> {
         return this.http.post<RegisterUser>(this.apiUrl, registerUser, httpOptions);
     }
 
+    // logging in a user
     login(authUser: AuthUser): Observable<any> {
         return this.http.post(this.apiUrl + '/login', authUser, httpOptions);
     }

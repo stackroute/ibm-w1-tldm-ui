@@ -22,10 +22,12 @@ export class ChannelsComponent implements OnInit {
     ngOnInit() {
     }
 
+    // routing to create-channel page
     createChannel() {
         this.router.navigateByUrl('/create-channel');
     }
 
+    // constructing channel perspective for front end
     setupChannel(channel: Channel) {
         this.messageService.resetChannelNotification();
         this.messageService.displayName = true;

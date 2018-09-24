@@ -2,6 +2,7 @@
 
 <div *ngIf="(channelService.isChannelActive); then channel else user"></div>
 
+<!--this template displays channel perspective messages-->
 <ng-template #channel>
     <div class="message-area">
         <!--div for displaying messages fetched from database-->
@@ -62,6 +63,7 @@
     </div>
 </ng-template>
 
+<!--this template displays user perspective messages-->
 <ng-template #user>
     <div class="message-area">
         <!--div for displaying messages fetched from database-->

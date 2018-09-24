@@ -28,14 +28,17 @@ export class UserService {
         this.receiverName = name;
     }
 
+    // registering a user
     registerUser(user: User): Observable<User> {
         return this.httpClient.post<User>(`${this.baseUrl}/register`, user, httpOptions);
     }
 
+    // fetching list of all users
     getAllUsers(): Observable<User[]> {
         return this.httpClient.get<User[]>(`${this.baseUrl}/api/v1/user`);
     }
 
+    // finding a user by his userId
     getUserDetailsById(userId: string): Observable<User> {
         return this.httpClient.get<User>(`${this.baseUrl}/api/v1/user/${userId}`);
     }
