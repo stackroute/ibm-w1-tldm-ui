@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {SearchService} from '../service/search.service';
 import {User} from '../model/user';
-import {Observable, Subject} from 'rxjs';
-import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
 
 @Component({
     selector: 'app-search-dialog',
@@ -11,25 +9,18 @@ import {debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
 })
 export class SearchDialogComponent implements OnInit {
 
-    value = '';
-
-    resultSet$: Observable<User[]>;
-    searchTerms = new Subject<string>();
+    results: User[];
 
     constructor(private searchService: SearchService) {
     }
 
     ngOnInit() {
-        // this.searchService.establishConnectionForSearch();
-
-        this.resultSet$ = this.searchTerms.pipe(
-            debounceTime(300),
-            distinctUntilChanged(),
-            switchMap((term: string) => this.searchService.searchUsers(term))
-        );
     }
 
-    search(searchTerm: string): void {
-        this.searchTerms.next(searchTerm);
+    search(searchTerm: string) {
+        this.searchService.searchTerm(searchTerm).subscribe(results => {
+            console.log(this.results = results);
+        });
     }
+
 }

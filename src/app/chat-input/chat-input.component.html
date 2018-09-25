@@ -2,7 +2,8 @@
     <mat-form-field class="form-field">
         <input type="text" #text matInput placeholder="Type a message" [(ngModel)]="value">
     </mat-form-field>
-    <button class="send-btn" mat-button (click)="sendMessage(text.value)"><span>Send Message</span>
+    <button class="send-btn" mat-button (click)="sendMessage(text.value)">
+        <span>Send Message</span>
         <mat-icon>forward</mat-icon>
     </button>
 </mat-card>

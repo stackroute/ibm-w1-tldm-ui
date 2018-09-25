@@ -17,8 +17,8 @@ export class RegisterComponent implements OnInit {
     user: User;
     hide = true;
     hide2 = true;
-    userId = new FormControl('', [Validators.required]);
     name: string;
+    userId = new FormControl('', [Validators.required]);
     userName = new FormControl('', [Validators.required, Validators.minLength(3)]);
     email = new FormControl('', [Validators.required, Validators.email]);
     password = new FormControl('', [Validators.required, Validators.minLength(6)]);
@@ -39,7 +39,7 @@ export class RegisterComponent implements OnInit {
         this.user = new User(userId, userName, password, userMail);
         if (password === password2) {
             this.authService.register(this.user).subscribe(data => {
-                console.log('successfully registred ' + data.userName);
+                console.log('successfully registered ' + data.userName);
                 this.messageService.establishConnectionForUser(data.userId);
                 this.authService.login(this.user).subscribe(authToken => {
                     this.tokenStorage.saveToken(authToken.token, authToken.userId);

@@ -1,12 +1,18 @@
-<mat-form-field class="example-form-field">
-    <input matInput type="text" placeholder="Search" [(ngModel)]="value" (keyup)="search(value)">
-    <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-        <mat-icon>close</mat-icon>
+<div>
+    <mat-form-field class="example-form-field">
+        <input matInput type="text" placeholder="Search" #searchTerm>
+        <!--<button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">-->
+            <!--<mat-icon>close</mat-icon>-->
+        <!--</button>-->
+    </mat-form-field>
+    <button class="search-btn" color="primary" mat-button (click)="search(searchTerm.value)">
+        <span>Search </span>
+        <mat-icon>search</mat-icon>
     </button>
-</mat-form-field>
+</div>
 
-<div *ngIf="resultSet$">
-    <div *ngFor="let user of resultSet$ | async">
+<div *ngIf="results">
+    <div *ngFor="let user of results">
         <mat-nav-list role="searchList">
             <mat-list-item>{{user.userName}}</mat-list-item>
         </mat-nav-list>
