@@ -38,7 +38,7 @@
 
                     <span class="spacer"></span><!--spacer for space b/w icons-->
                     <div class="button-row">
-                        <button mat-icon-button *ngIf="messageService.displayName" (click)="closeChat()">
+                        <button mat-icon-button *ngIf="(messageService.displayName)||(channelService.isChannelActive)" (click)="closeChat()">
                             <mat-icon class="icon">close</mat-icon>
                         </button>
                         <button mat-icon-button (click)="openDialog()">
