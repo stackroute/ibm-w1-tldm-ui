@@ -15,7 +15,7 @@ export class CommunityService {
     constructor(private http: HttpClient, private userService: UserService) {
     }
 
-    private baseUrl = 'http://172.23.239.237:8066/api/v1/community';
+    private baseUrl = 'http://172.23.239.206:8063/Community-Service/api/v1/community';
 
     // inviting users to a community
     inviteUsers(userMail: string): Observable<Community> {

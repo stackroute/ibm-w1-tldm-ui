@@ -23,7 +23,7 @@ export class ChannelService {
 
     isAllowedForChannel: boolean;
 
-    baseUrl = 'http://172.23.239.233:8065/api/v1/channel';
+    baseUrl = 'http://172.23.239.206:8063/Channel-Service/api/v1/channel';
 
     constructor(private httpClient: HttpClient,
                 private messageService: MessageService) {

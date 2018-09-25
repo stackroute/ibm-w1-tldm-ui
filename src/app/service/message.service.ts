@@ -22,6 +22,8 @@ export class MessageService {
     private stompClientUser = null;
     private stompClientChannel = null;
 
+    baseUrl = 'http://172.23.239.206:8063/Message-Persistence-Service/api/v1';
+
     // incoming message data coming from web-socket being stored in this array.
     messagesArr: Message[] = [];
 
@@ -82,12 +84,12 @@ export class MessageService {
 
     // conversation between sender and receiver
     getAllMessagesBySenderAndReceiver(): Observable<Message[]> {
-        return this.http.get<Message[]>(`http://172.23.239.104:8068/api/v1/message/${this.sender.userId}/${this.receiver.userId}`);
+        return this.http.get<Message[]>(`${this.baseUrl}/message/${this.sender.userId}/${this.receiver.userId}`);
     }
 
     // conversation between a channel
     getAllMessagesByChannelId(channelId: string): Observable<ChannelMessage[]> {
-        return this.http.get<ChannelMessage[]>(`http://172.23.239.104:8068/api/v1/channel-message/${channelId}`);
+        return this.http.get<ChannelMessage[]>(`${this.baseUrl}/channel-message/${channelId}`);
     }
 
     // called at the time of logout.
