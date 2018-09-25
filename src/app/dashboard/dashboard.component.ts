@@ -4,6 +4,9 @@ import {MessageService} from '../service/message.service';
 import {ChannelService} from '../service/channel.service';
 import {TokenStorage} from '../service/token-storage.service';
 import {UserService} from '../service/user.service';
+import {MatDialog} from '@angular/material';
+import {SearchDialogComponent} from '../search-dialog/search-dialog.component';
+import {SearchService} from '../service/search.service';
 
 @Component({
     selector: 'app-dashboard',
@@ -18,11 +21,15 @@ export class DashboardComponent implements OnInit {
     receiverId: string;
     channelId: string;
 
+    dialogRef;
+
     constructor(private router: Router,
                 public messageService: MessageService,
                 public channelService: ChannelService,
                 private tokenStorage: TokenStorage,
-                private userService: UserService) {
+                private userService: UserService,
+                public dialog: MatDialog,
+                private searchService: SearchService) {
     }
 
     ngOnInit() {
@@ -64,5 +71,13 @@ export class DashboardComponent implements OnInit {
         this.tokenStorage.removeToken();
 
         this.router.navigateByUrl('/login');
+    }
+
+    openDialog() {
+        this.dialogRef = this.dialog.open(SearchDialogComponent, {});
+
+        this.dialogRef.afterClosed().subscribe(result => {
+            this.searchService.disconnect();
+        });
     }
 }
