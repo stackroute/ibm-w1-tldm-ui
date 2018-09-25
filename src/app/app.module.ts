@@ -8,7 +8,15 @@ import {PeopleComponent} from './people/people.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule, MatListModule, MatCardModule, MatSelectModule, MatFormFieldModule, MatTabsModule} from '@angular/material';
+import {
+    MatButtonModule,
+    MatListModule,
+    MatCardModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    MatTabsModule,
+    MatDialogModule
+} from '@angular/material';
 import {MatCheckboxModule, MatTooltipModule} from '@angular/material';
 import {MatMenuModule} from '@angular/material/menu';
 import {MessagesComponent} from './messages/messages.component';
@@ -25,6 +33,7 @@ import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {SortbyTimestampPipe} from './sortby-timestamp.pipe';
 import {ChannelPageComponent} from './channel-page/channel-page.component';
+import {SearchDialogComponent} from './search-dialog/search-dialog.component';
 
 @NgModule({
     declarations: [
@@ -40,7 +49,8 @@ import {ChannelPageComponent} from './channel-page/channel-page.component';
         LoginComponent,
         PageNotFoundComponent,
         SortbyTimestampPipe,
-        ChannelPageComponent
+        ChannelPageComponent,
+        SearchDialogComponent
     ],
     imports: [
         BrowserModule,
@@ -79,6 +89,10 @@ import {ChannelPageComponent} from './channel-page/channel-page.component';
         AppRoutingModule,
         ReactiveFormsModule,
         MatTabsModule,
+        MatDialogModule
+    ],
+    entryComponents: [
+        SearchDialogComponent
     ],
     providers: [],
     bootstrap: [AppComponent]
