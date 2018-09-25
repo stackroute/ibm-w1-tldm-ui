@@ -8,6 +8,7 @@ import {UserService} from '../service/user.service';
 import {ChannelService} from '../service/channel.service';
 import {HttpErrorResponse} from '@angular/common/http';
 import {TokenStorage} from '../service/token-storage.service';
+import {JwtHelperService} from '@auth0/angular-jwt';
 
 @Component({
     selector: 'app-login',
