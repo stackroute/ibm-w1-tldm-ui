@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {UserService} from './user.service';
 import {Community} from '../model/community';
 import {Observable} from 'rxjs';
+import {Channel} from '../model/channel';
 
 const httpOptions = {
     headers: new HttpHeaders({'content-Type': 'application/json'})
@@ -12,6 +13,9 @@ const httpOptions = {
     providedIn: 'root'
 })
 export class CommunityService {
+
+    communityName: string;
+
     constructor(private http: HttpClient, private userService: UserService) {
     }
 
@@ -31,5 +35,14 @@ export class CommunityService {
     getAllCommunityUsers() {
         // we have a dummy community here so therefore fetching list of all users
         return this.userService.getAllUsers();
+    }
+
+    updateCommunityByCommunityName(communityName: string, channel: Channel): Observable<Community> {
+        return this.http.put<Community>(`${this.baseUrl}/update/${communityName}`, channel, httpOptions);
+
+    }
+
+    setCommunityName(communityName: string) {
+        this.communityName = communityName;
     }
 }
