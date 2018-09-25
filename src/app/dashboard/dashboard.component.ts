@@ -80,4 +80,10 @@ export class DashboardComponent implements OnInit {
             // this.searchService.disconnect();
         });
     }
+
+    closeChat() {
+        this.messageService.displayName = false;
+        this.channelService.isChannelActive = false;
+        this.messageService.receiver = null;
+    }
 }
