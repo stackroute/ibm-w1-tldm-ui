@@ -15,6 +15,8 @@ export class DashboardComponent implements OnInit {
     opened: boolean;
 
     userId: string;
+    receiverId: string;
+    channelId: string;
 
     constructor(private router: Router,
                 public messageService: MessageService,
@@ -24,6 +26,22 @@ export class DashboardComponent implements OnInit {
     }
 
     ngOnInit() {
+        if (this.tokenStorage.getReceiver()) {
+            console.log('Receiver ID is :: ' + this.tokenStorage.getReceiver());
+            this.receiverId = this.tokenStorage.getReceiver();
+            this.userService.getUserDetailsById(this.receiverId).subscribe(data => {
+                this.messageService.setReceiver(data);
+                this.messageService.displayName = true;
+            });
+        }
+
+        if (this.tokenStorage.getChannel()) {
+            console.log('Channel ID is :: ' + this.tokenStorage.getChannel());
+            this.messageService.displayName = true;
+            this.channelService.isChannelActive = true;
+            // TODO: Setting channel on dashboard refresh
+        }
+
         this.userId = this.tokenStorage.getUserId();
         if (this.userId) {
             this.userService.getUserDetailsById(this.userId).subscribe(data => {
@@ -34,8 +52,6 @@ export class DashboardComponent implements OnInit {
 
             });
         }
-
-        // this.messageService.displayName = true;
     }
 
     // logging out and clearing/resetting all required variables

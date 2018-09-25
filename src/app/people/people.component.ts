@@ -4,6 +4,7 @@ import {Message} from '../model/message';
 import {UserService} from '../service/user.service';
 import {MessageService} from '../service/message.service';
 import {ChannelService} from '../service/channel.service';
+import {TokenStorage} from '../service/token-storage.service';
 
 @Component({
     selector: 'app-people',
@@ -18,7 +19,8 @@ export class PeopleComponent implements OnInit {
 
     constructor(private userService: UserService,
                 public messageService: MessageService,
-                private channelService: ChannelService) {
+                private channelService: ChannelService,
+                private tokenStorage: TokenStorage) {
     }
 
     ngOnInit() {
@@ -30,6 +32,9 @@ export class PeopleComponent implements OnInit {
 
     // setting receiver value for front-end
     setReceiver(userId: string) {
+        if (this.tokenStorage.getChannel()) {
+            this.tokenStorage.removeChannel();
+        }
         if (this.channelService.isChannelActive) {
             this.channelService.isChannelActive = false;
         }
@@ -37,6 +42,7 @@ export class PeopleComponent implements OnInit {
         this.messageService.resetUserNotification();
         this.userService.getUserDetailsById(userId).subscribe(data => {
             console.log(this.user = data);
+            this.tokenStorage.saveReceiver(this.user.userId);
             this.messageService.setReceiver(this.user);
             this.messageService.displayName = true;
             this.messageService.getAllMessagesBySenderAndReceiver().subscribe(messages => {

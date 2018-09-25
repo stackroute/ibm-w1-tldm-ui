@@ -35,6 +35,10 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit() {
+        if ((this.tokenStorage.getToken())) {
+            window.localStorage.clear();
+        }
+
         this.loginForm = this.formBuilder.group({
             'userId': [this.user.userId, [
                 Validators.required
