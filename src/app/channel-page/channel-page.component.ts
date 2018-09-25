@@ -38,6 +38,8 @@ export class ChannelPageComponent implements OnInit {
             this.messageService.disconnectChannel();
             this.channelService.fetchChannels();
         });
+
+        // navigating to dashboard
         this.router.navigateByUrl('/dashboard');
     }
 
