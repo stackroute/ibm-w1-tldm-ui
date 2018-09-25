@@ -57,16 +57,9 @@ export class LoginComponent implements OnInit {
         this.authService.login(this.user)
             .subscribe(data => {
                     this.tokenStorage.saveToken(data.token, data.userId);
-                    if (data.userId === this.user.userId) {
-                        this.isValidated = true;
-                        console.log('Welcome ' + data.userId);
-                    } else {
-                        this.isValidated = false;
-                    }
-                    if (this.isValidated) {
-                        this.messageService.clearMessages();
-                        this.router.navigateByUrl('/dashboard');
-                    }
+                    // this.isValidated = this.authService.isAuthenticated();
+                    this.messageService.clearMessages();
+                    this.router.navigateByUrl('/dashboard');
                 },
                 (err: HttpErrorResponse) => {
                     this.errorMsg = err.error.message;

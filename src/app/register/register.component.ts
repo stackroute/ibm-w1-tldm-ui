@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {MessageService} from '../service/message.service';
 import {User} from '../model/user';
 import {UserService} from '../service/user.service';
+import {TokenStorage} from '../service/token-storage.service';
 
 @Component({
     selector: 'app-register',
@@ -27,7 +28,8 @@ export class RegisterComponent implements OnInit {
                 private userService: UserService,
                 private formBuilder: FormBuilder,
                 private router: Router,
-                private messageService: MessageService) {
+                private messageService: MessageService,
+                private tokenStorage: TokenStorage) {
     }
 
     ngOnInit() {
@@ -39,8 +41,11 @@ export class RegisterComponent implements OnInit {
             this.authService.register(this.user).subscribe(data => {
                 console.log('successfully registred ' + data.userName);
                 this.messageService.establishConnectionForUser(data.userId);
-                this.router.navigateByUrl('/dashboard');
-                this.messageService.setSender(this.user);
+                this.authService.login(this.user).subscribe(authToken => {
+                    this.tokenStorage.saveToken(authToken.token, authToken.userId);
+                    this.router.navigateByUrl('/dashboard');
+                    this.messageService.setSender(this.user);
+                });
             });
         } else {
             console.log('Passwords do not match!');

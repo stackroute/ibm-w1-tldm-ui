@@ -89,7 +89,7 @@ import {SearchDialogComponent} from './search-dialog/search-dialog.component';
         AppRoutingModule,
         ReactiveFormsModule,
         MatTabsModule,
-        MatDialogModule
+        MatDialogModule,
     ],
     entryComponents: [
         SearchDialogComponent

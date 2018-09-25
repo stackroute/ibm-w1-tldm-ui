@@ -1,12 +1,14 @@
 <mat-form-field class="example-form-field">
-    <input matInput type="text" placeholder="Search" [(ngModel)]="value">
+    <input matInput type="text" placeholder="Search" [(ngModel)]="value" (keyup)="search(value)">
     <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
         <mat-icon>close</mat-icon>
     </button>
 </mat-form-field>
 
-<mat-nav-list role="searchList">
-    <mat-list-item>
-        User Name
-    </mat-list-item>
-</mat-nav-list>
+<div *ngIf="resultSet$">
+    <div *ngFor="let user of resultSet$ | async">
+        <mat-nav-list role="searchList">
+            <mat-list-item>{{user.userName}}</mat-list-item>
+        </mat-nav-list>
+    </div>
+</div>

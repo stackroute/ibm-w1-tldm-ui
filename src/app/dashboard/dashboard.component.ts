@@ -77,7 +77,7 @@ export class DashboardComponent implements OnInit {
         this.dialogRef = this.dialog.open(SearchDialogComponent, {});
 
         this.dialogRef.afterClosed().subscribe(result => {
-            this.searchService.disconnect();
+            // this.searchService.disconnect();
         });
     }
 }
