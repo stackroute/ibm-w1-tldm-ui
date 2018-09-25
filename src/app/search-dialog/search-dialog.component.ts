@@ -25,7 +25,6 @@ export class SearchDialogComponent implements OnInit {
                 private messageService: MessageService,
                 private channelService: ChannelService,
                 private userService: UserService,
-                private router: Router,
                 public dialogRef: MatDialogRef<SearchDialogComponent>) {
     }
 
@@ -38,8 +37,27 @@ export class SearchDialogComponent implements OnInit {
         });
     }
 
-    setReceiver() {
-        console.log('hello');
+    setReceiver(userId: string) {
+        if (this.tokenStorage.getChannel()) {
+            this.tokenStorage.removeChannel();
+        }
+        if (this.channelService.isChannelActive) {
+            this.channelService.isChannelActive = false;
+        }
+
+        this.userService.getUserDetailsById(userId).subscribe(data => {
+            console.log(this.user = data);
+            this.tokenStorage.saveReceiver(this.user.userId);
+            this.messageService.setReceiver(this.user);
+            this.messageService.displayName = true;
+            this.messageService.getAllMessagesBySenderAndReceiver().subscribe(messages => {
+                console.log(this.messages = messages);
+                this.messageService.setMessages(this.messages);
+                this.messageService.setDisplayMessage(userId);
+            });
+        });
+
+        this.dialogRef.close();
     }
 
 }

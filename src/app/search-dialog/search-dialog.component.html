@@ -12,14 +12,11 @@
 </div>
 
 <div *ngIf="results">
-    <mat-list>
+    <mat-nav-list>
         <div *ngFor="let user of results">
-            <mat-list-item>
-                <a (click)="setReceiver()">
-                    {{user.userName}}
-                </a>
+            <mat-list-item (click)="setReceiver(user.userId)">
+                {{user.userName}}
             </mat-list-item>
         </div>
-    </mat-list>
-
+    </mat-nav-list>
 </div>
