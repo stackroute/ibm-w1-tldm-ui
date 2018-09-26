@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-page-not-found',
@@ -15,7 +15,7 @@ export class PageNotFoundComponent implements OnInit {
     }
 
     redirectToLogin() {
-        this.router.navigateByUrl('/login');
+        this.router.navigateByUrl('/landing-page');
     }
 
 }

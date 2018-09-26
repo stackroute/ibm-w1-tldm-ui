@@ -8,6 +8,7 @@ import {MatDialog} from '@angular/material';
 import {SearchDialogComponent} from '../search-dialog/search-dialog.component';
 import {Channel} from '../model/channel';
 import {ChanneldialogComponent} from '../channeldialog/channeldialog.component';
+
 @Component({
     selector: 'app-dashboard',
     templateUrl: './dashboard.component.html',
@@ -85,12 +86,13 @@ export class DashboardComponent implements OnInit {
 
     openDialog() {
         this.dialogRef = this.dialog.open(SearchDialogComponent, {});
-        
+
         this.dialogRef.afterClosed().subscribe(result => {
             // this.searchService.disconnect();
         });
     }
-    openChannelDialog(){
+
+    openChannelDialog() {
         this.dialog.open(ChanneldialogComponent);
     }
 

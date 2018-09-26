@@ -20,7 +20,6 @@ export class LoginComponent implements OnInit {
     user: AuthUser = new AuthUser();
     loginForm: FormGroup;
     hide = true;
-    isValidated: boolean;
     userId = new FormControl('', [Validators.required]);
     password = new FormControl('', [Validators.required, Validators.minLength(6)]);
 

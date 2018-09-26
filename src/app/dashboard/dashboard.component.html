@@ -8,9 +8,6 @@
         <div *ngIf="(messageService.receiver)||(channelService.isChannelActive)">
             <app-chat-input></app-chat-input>
         </div>
-        <!--<div *ngIf="channelService.isChannelActive">-->
-            <!--<app-right-sidenav></app-right-sidenav>-->
-        <!--</div>-->
         <div>
             <mat-toolbar color="primary" class="mat-toolbar">
                 <mat-toolbar-row>
@@ -44,7 +41,8 @@
                         <button mat-icon-button *ngIf="channelService.isChannelActive" (click)="openChannelDialog()">
                             <mat-icon class="icon" matTooltip="Add More Users">person_add</mat-icon>
                         </button>
-                        <button mat-icon-button *ngIf="(messageService.displayName)||(channelService.isChannelActive)" (click)="closeChat()">
+                        <button mat-icon-button *ngIf="(messageService.displayName)||(channelService.isChannelActive)"
+                                (click)="closeChat()">
                             <mat-icon class="icon">close</mat-icon>
                         </button>
                         <button mat-icon-button (click)="openDialog()">

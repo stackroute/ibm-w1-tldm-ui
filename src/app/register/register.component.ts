@@ -52,7 +52,6 @@ export class RegisterComponent implements OnInit {
         }
     }
 
-    // TODO: proper error handling
     getErrorMessage() {
         return this.userId.hasError('required') ? 'You must enter a value' :
             this.userName.hasError('required') ? 'You must enter a value' :
