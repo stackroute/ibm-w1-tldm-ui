@@ -16,12 +16,12 @@ export class ChanneldialogComponent implements OnInit {
   users: User[];
   channelUser1: User[] = [];
   channelUsers: User[] = [];
-  communityUserLength: number;
-  channelUserLength: number;
-  notChannelUsers: User[] = [];
-  flag = false;
-  i = 0;
-  j = 0;
+  // communityUserLength: number;
+  // channelUserLength: number;
+  // notChannelUsers: User[] = [];
+  // flag = false;
+  // i = 0;
+  // j = 0;
 
   constructor(private channelService: ChannelService, private communityService: CommunityService, private router: Router) { }
 
@@ -73,10 +73,12 @@ export class ChanneldialogComponent implements OnInit {
     this.channelService.updateChannel(this.channelService.channel.channelId, this.channelUsers).subscribe((data) => {
       this.channel = data;
       console.log(this.channel);
+     
     });
+    
+  
+
   }
   
-  cancel() {
-    this.router.navigateByUrl('/dashboard');
-  }
-}
+ 
+} this.router.navigateByUrl('/dashboard');

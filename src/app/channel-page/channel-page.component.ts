@@ -36,10 +36,10 @@ export class ChannelPageComponent implements OnInit {
         this.channelService.createChannel(this.channel).subscribe(data => {
             console.log('created ' + data.channelName + ' successfully');
             this.messageService.disconnectChannel();
-            this.channelService.fetchChannels();
             this.communityService.updateCommunityByCommunityName(this.communityService.communityName, this.channel).subscribe(() => {
                 console.log('Community Updated');
             });
+            this.channelService.fetchChannels();
         });
 
         // navigating to dashboard

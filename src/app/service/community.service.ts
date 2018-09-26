@@ -14,7 +14,7 @@ const httpOptions = {
 })
 export class CommunityService {
 
-    communityName: string;
+    communityName = 'Trail';
 
     constructor(private http: HttpClient, private userService: UserService) {
     }

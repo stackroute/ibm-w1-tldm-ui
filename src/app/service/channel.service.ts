@@ -56,8 +56,8 @@ export class ChannelService {
         return this.httpClient.get<Channel[]>(this.baseUrl);
     }
 
-    getChannelDetailByChannelName(name: string): Observable<Channel> {
-        return this.httpClient.get<Channel>(`${this.baseUrl}/${name}`);
+    getChannelDetailByChannelId(channelId: string): Observable<Channel> {
+        return this.httpClient.get<Channel>(`${this.baseUrl}/getchannel/${channelId}`);
     }
 
     // creating a channel
