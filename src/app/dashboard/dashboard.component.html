@@ -8,6 +8,9 @@
         <div *ngIf="(messageService.receiver)||(channelService.isChannelActive)">
             <app-chat-input></app-chat-input>
         </div>
+        <!--<div *ngIf="channelService.isChannelActive">-->
+            <!--<app-right-sidenav></app-right-sidenav>-->
+        <!--</div>-->
         <div>
             <mat-toolbar color="primary" class="mat-toolbar">
                 <mat-toolbar-row>

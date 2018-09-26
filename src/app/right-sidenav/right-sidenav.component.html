@@ -1,45 +1,44 @@
 <!-- <ng-container *ngIf="shouldRun"> -->
-  <div class="right-box">
+<div class="right-box">
 
     <mat-sidenav-container class="example-container">
-      <mat-sidenav #sidenav position="end" mode="side" [(opened)]="opened" (opened)="events.push('open!')" (closed)="events.push('close!')"
-        class="example-sidenav">
+        <mat-sidenav #sidenav position="end" mode="side" [(opened)]="opened" (opened)="events.push('open!')"
+                     (closed)="events.push('close!')"
+                     class="example-sidenav">
 
-        <!-- <button mat-icon-button (click) = "getUsersByChannelName(channelName)">
-          <mat-icon matTooltip="click to view list" class ="icon" >view_list</mat-icon>
-        </button> -->
-       
-         <div *ngFor="let user of users">
-            <!-- <div *ngIf="channelService.channel.channelName==user.userId"> -->
+            <!-- <button mat-icon-button (click) = "getUsersByChannelName(channelName)">
+              <mat-icon matTooltip="click to view list" class ="icon" >view_list</mat-icon>
+            </button> -->
 
-          <mat-list-item (click)="getUsersByChannelName(this.channelName)">
-              {{user.userName}} 
-              <span class="spacer"></span>
-               <!-- <div *ngIf="(messageService.channelNotification.isActive)
-              &&(messageService.channelNotification.channelId===channel.channelId)
-              &&(messageService.sender.userId!==messageService.channelNotification.senderId)">  -->
-                  <mat-icon class="notif-icon">
-                      fiber_manual_record
-                  </mat-icon>
-               <!-- </div>  -->
+            <div *ngFor="let user of users">
+                <!-- <div *ngIf="channelService.channel.channelName==user.userId"> -->
+
+                <mat-list-item>
+                    {{user.userName}}
+                    <span class="spacer"></span>
+                    <!-- <div *ngIf="(messageService.channelNotification.isActive)
+                   &&(messageService.channelNotification.channelId===channel.channelId)
+                   &&(messageService.sender.userId!==messageService.channelNotification.senderId)">  -->
+                    <!-- </div>  -->
 
 
-              <!-- <mat-icon matTooltip="click to view list" class ="icon" >view_list</mat-icon> -->
-              <mat-divider></mat-divider>
+                    <!-- <mat-icon matTooltip="click to view list" class ="icon" >view_list</mat-icon> -->
+                    <mat-divider></mat-divider>
 
-        </mat-list-item>
-        </div>
-        <!-- </div> -->
-      </mat-sidenav>
-  
-  
-  
-      <mat-sidenav-content>
-        <p><button mat-button (click)="sidenav.toggle()">CHANNEL INFO</button></p>
-             
-      </mat-sidenav-content>
+                </mat-list-item>
+            </div>
+            <!-- </div> -->
+        </mat-sidenav>
+
+
+        <mat-sidenav-content>
+            <p>
+                <button mat-button (click)="(sidenav.toggle())&&(populateSidenav())">CHANNEL INFO</button>
+            </p>
+
+        </mat-sidenav-content>
     </mat-sidenav-container>
-  
-  
+
+
     <!-- </ng-container>   -->
-  </div>
+</div>
