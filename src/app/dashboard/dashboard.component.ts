@@ -50,7 +50,6 @@ export class DashboardComponent implements OnInit {
         if (this.tokenStorage.getChannel()) {
             console.log('Channel ID is :: ' + this.tokenStorage.getChannel());
             this.channelId = this.tokenStorage.getChannel();
-            // TODO: Setting channel on dashboard refresh
             this.channelService.getChannelDetailByChannelId(this.channelId).subscribe(data => {
                 this.channelService.setChannel(data);
                 this.messageService.displayName = true;
