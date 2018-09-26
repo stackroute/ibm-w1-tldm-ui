@@ -34,6 +34,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {SortbyTimestampPipe} from './sortby-timestamp.pipe';
 import {ChannelPageComponent} from './channel-page/channel-page.component';
 import {SearchDialogComponent} from './search-dialog/search-dialog.component';
+import { RightSidenavComponent } from './right-sidenav/right-sidenav.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
 @NgModule({
     declarations: [
@@ -50,7 +52,9 @@ import {SearchDialogComponent} from './search-dialog/search-dialog.component';
         PageNotFoundComponent,
         SortbyTimestampPipe,
         ChannelPageComponent,
-        SearchDialogComponent
+        SearchDialogComponent,
+        RightSidenavComponent,
+        LandingPageComponent
     ],
     imports: [
         BrowserModule,
