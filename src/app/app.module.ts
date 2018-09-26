@@ -34,14 +34,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {SortbyTimestampPipe} from './sortby-timestamp.pipe';
 import {ChannelPageComponent} from './channel-page/channel-page.component';
 import {SearchDialogComponent} from './search-dialog/search-dialog.component';
-<<<<<<< HEAD
-import { RightSidenavComponent } from './right-sidenav/right-sidenav.component';
-import { LandingPageComponent } from './landing-page/landing-page.component';
-=======
-import { ChanneldialogComponent } from './channeldialog/channeldialog.component';
-
-
->>>>>>> dbfd675feb662add6a5313849a8948cfa9b69092
+import {RightSidenavComponent} from './right-sidenav/right-sidenav.component';
+import {LandingPageComponent} from './landing-page/landing-page.component';
+import {ChanneldialogComponent} from './channeldialog/channeldialog.component';
 
 @NgModule({
     declarations: [
@@ -59,14 +54,9 @@ import { ChanneldialogComponent } from './channeldialog/channeldialog.component'
         SortbyTimestampPipe,
         ChannelPageComponent,
         SearchDialogComponent,
-<<<<<<< HEAD
         RightSidenavComponent,
-        LandingPageComponent
-=======
+        LandingPageComponent,
         ChanneldialogComponent
-       
-       
->>>>>>> dbfd675feb662add6a5313849a8948cfa9b69092
     ],
     imports: [
         BrowserModule,
