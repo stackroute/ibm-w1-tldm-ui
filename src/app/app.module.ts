@@ -25,7 +25,7 @@ import {MatInputModule} from '@angular/material/input';
 import {ToolbarComponent} from './toolbar/toolbar.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
-import {AppRoutingModule} from './/app-routing.module';
+import {AppRoutingModule} from './app-routing.module';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {RegisterComponent} from './register/register.component';
 import {LoginComponent} from './login/login.component';
@@ -34,6 +34,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {SortbyTimestampPipe} from './sortby-timestamp.pipe';
 import {ChannelPageComponent} from './channel-page/channel-page.component';
 import {SearchDialogComponent} from './search-dialog/search-dialog.component';
+import { ChanneldialogComponent } from './channeldialog/channeldialog.component';
+
+
 
 @NgModule({
     declarations: [
@@ -50,7 +53,10 @@ import {SearchDialogComponent} from './search-dialog/search-dialog.component';
         PageNotFoundComponent,
         SortbyTimestampPipe,
         ChannelPageComponent,
-        SearchDialogComponent
+        SearchDialogComponent,
+        ChanneldialogComponent
+       
+       
     ],
     imports: [
         BrowserModule,
@@ -92,7 +98,7 @@ import {SearchDialogComponent} from './search-dialog/search-dialog.component';
         MatDialogModule,
     ],
     entryComponents: [
-        SearchDialogComponent
+        SearchDialogComponent, ChanneldialogComponent
     ],
     providers: [],
     bootstrap: [AppComponent]

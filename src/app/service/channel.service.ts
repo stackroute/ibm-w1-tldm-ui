@@ -77,4 +77,18 @@ export class ChannelService {
             this.messageService.establishConnectionForChannel(this.channels);
         });
     }
+    
+    //updating channel users
+    updateChannel(id: string, user: User[]): Observable<Channel> {
+        return this.httpClient.put<Channel>(`${this.baseUrl}/${id}`, user, httpOptions);
+    }
+    
+    //getting details of channel users by channel name
+    getChannelUsersByChannelName(channelName:string):Observable<User[]>
+    {
+        return this.httpClient.get<User[]>(this.baseUrl+"/getuser/"+channelName);
+    }
+
+
+
 }

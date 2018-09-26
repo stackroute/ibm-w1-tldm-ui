@@ -1,0 +1,37 @@
+<div class="channel">
+  <h2>
+      Add users to Channel
+  </h2>
+</div>
+
+<!-- <mat-form-field>
+  <input matInput [(ngModel)]="userName" placeholder="Add a name">
+</mat-form-field> -->
+<mat-form-field appearance="outline">
+  <mat-select placeholder="Select Users" multiple>
+      <mat-option *ngFor="let user of users"
+                  [value]="user.userName"
+                  (click)="addChannelUsers(user)">
+          {{user.userName}}
+      </mat-option>
+  </mat-select>
+</mat-form-field>
+<br>
+<div class="button-row">
+  <button mat-raised-button
+          color="primary"
+          type="submit"
+          id="Channelupdate"
+          (click)="channelUpdate()">
+      Ok
+  </button>
+
+  
+    <button mat-raised-button class="cancel"
+            color="primary"
+            type="submit"
+            id="createChannel"
+            (click)="cancel()">
+        Cancel
+    </button>
+</div>
