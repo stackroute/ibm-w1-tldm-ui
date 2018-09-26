@@ -6,7 +6,7 @@ import {TokenStorage} from '../service/token-storage.service';
 import {UserService} from '../service/user.service';
 import {MatDialog} from '@angular/material';
 import {SearchDialogComponent} from '../search-dialog/search-dialog.component';
-import {SearchService} from '../service/search.service';
+import {Channel} from '../model/channel';
 
 @Component({
     selector: 'app-dashboard',
@@ -21,6 +21,8 @@ export class DashboardComponent implements OnInit {
     receiverId: string;
     channelId: string;
 
+    channel: Channel;
+
     dialogRef;
 
     constructor(private router: Router,
@@ -28,8 +30,7 @@ export class DashboardComponent implements OnInit {
                 public channelService: ChannelService,
                 private tokenStorage: TokenStorage,
                 private userService: UserService,
-                public dialog: MatDialog,
-                private searchService: SearchService) {
+                public dialog: MatDialog) {
     }
 
     ngOnInit() {
@@ -39,14 +40,25 @@ export class DashboardComponent implements OnInit {
             this.userService.getUserDetailsById(this.receiverId).subscribe(data => {
                 this.messageService.setReceiver(data);
                 this.messageService.displayName = true;
+                this.messageService.getAllMessagesBySenderAndReceiver().subscribe(messages => {
+                    this.messageService.setMessages(messages);
+                    this.messageService.setDisplayMessage(this.receiverId);
+                });
             });
         }
 
         if (this.tokenStorage.getChannel()) {
             console.log('Channel ID is :: ' + this.tokenStorage.getChannel());
-            this.messageService.displayName = true;
-            this.channelService.isChannelActive = true;
+            this.channelId = this.tokenStorage.getChannel();
             // TODO: Setting channel on dashboard refresh
+            this.channelService.getChannelDetailByChannelId(this.channelId).subscribe(data => {
+                this.channelService.setChannel(data);
+                this.messageService.displayName = true;
+                this.channelService.isChannelActive = true;
+                this.messageService.getAllMessagesByChannelId(this.channelId).subscribe(messages => {
+                    this.messageService.setChannelMessages(messages);
+                });
+            });
         }
 
         this.userId = this.tokenStorage.getUserId();
@@ -56,7 +68,6 @@ export class DashboardComponent implements OnInit {
                 console.log(data);
                 this.messageService.establishConnectionForUser(this.userId);
                 this.channelService.fetchChannels();
-
             });
         }
     }
