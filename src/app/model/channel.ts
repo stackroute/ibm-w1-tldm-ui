@@ -1,4 +1,3 @@
-import {Community} from './community';
 import {User} from './user';
 
 export class Channel {
@@ -6,8 +5,6 @@ export class Channel {
     channelName: string;
     channelCreatedBy: string;
     channelDescription: string;
-    channelCreatedDate: string;
-    community: Community;
     channelUsers: User[];
 
     constructor(channelName: string, channelDescription: string, channelUsers: User[], channelCreatedBy: string) {
