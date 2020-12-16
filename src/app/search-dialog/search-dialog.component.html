@@ -1,0 +1,22 @@
+<div>
+    <mat-form-field class="example-form-field">
+        <input matInput type="text" placeholder="Search" #searchTerm>
+        <!--<button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">-->
+        <!--<mat-icon>close</mat-icon>-->
+        <!--</button>-->
+    </mat-form-field>
+    <button class="search-btn" color="primary" mat-button (click)="search(searchTerm.value)">
+        <span>Search </span>
+        <mat-icon>search</mat-icon>
+    </button>
+</div>
+
+<div *ngIf="results">
+    <mat-nav-list>
+        <div *ngFor="let user of results">
+            <mat-list-item (click)="setReceiver(user.userId)">
+                {{user.userName}}
+            </mat-list-item>
+        </div>
+    </mat-nav-list>
+</div>

@@ -1,0 +1,60 @@
+<mat-sidenav-container class="example-container" autosize>
+    <mat-sidenav #sidenav mode="side" [(opened)]="opened">
+        <app-sidebar-component></app-sidebar-component>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="main">
+        <app-messages></app-messages>
+        <div *ngIf="(messageService.receiver)||(channelService.isChannelActive)">
+            <app-chat-input></app-chat-input>
+        </div>
+        <div>
+            <mat-toolbar color="primary" class="mat-toolbar">
+                <mat-toolbar-row>
+                    <button mat-icon-button (click)="sidenav.toggle()">
+                        <mat-icon class="icon" matTooltip="Side Menu">
+                            menu
+                        </mat-icon>
+                    </button>
+                    <ng-template #dashboard>
+                        <span>
+                            Welcome, {{messageService.sender.userName}}
+                        </span>
+                    </ng-template>
+                    <div *ngIf="(messageService.displayName)||(channelService.isChannelActive); else dashboard">
+                        <div *ngIf="(messageService.receiver); then user else channel"></div>
+                    </div>
+                    <ng-template #user>
+                        <span>
+                            {{messageService.receiver.userName}}
+                        </span>
+                    </ng-template>
+                    <ng-template #channel>
+                        <span>
+                            {{channelService.channel.channelName}}
+                        </span>
+                    </ng-template>
+
+                    <span class="spacer"></span>
+                    <!--spacer for space b/w icons-->
+                    <div class="button-row">
+                        <button mat-icon-button *ngIf="channelService.isChannelActive" (click)="openChannelDialog()">
+                            <mat-icon class="icon" matTooltip="Add More Users">person_add</mat-icon>
+                        </button>
+                        <button mat-icon-button *ngIf="(messageService.displayName)||(channelService.isChannelActive)"
+                                (click)="closeChat()">
+                            <mat-icon class="icon">close</mat-icon>
+                        </button>
+                        <button mat-icon-button (click)="openDialog()">
+                            <mat-icon class="icon" matTooltip="Search">search</mat-icon>
+                        </button>
+                        <span class="spacer"></span>
+                        <button mat-icon-button (click)="logout()">
+                            <mat-icon class="icon" matTooltip="Logout">exit_to_app</mat-icon>
+                        </button>
+                    </div>
+                </mat-toolbar-row>
+            </mat-toolbar>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

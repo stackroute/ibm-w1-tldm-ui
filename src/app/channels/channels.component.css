@@ -1,3 +1,9 @@
 .spacer {
     flex: 1 1 auto;
 }
+
+.notif-icon {
+    font-size: 16px;
+    color: darkred;
+}
+

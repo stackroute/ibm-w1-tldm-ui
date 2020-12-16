@@ -1,7 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {UserService} from '../user.service';
-import {User} from '../user';
-import {MessageService} from '../message.service';
+import {User} from '../model/user';
+import {Message} from '../model/message';
+import {UserService} from '../service/user.service';
+import {MessageService} from '../service/message.service';
+import {ChannelService} from '../service/channel.service';
+import {TokenStorage} from '../service/token-storage.service';
 
 @Component({
     selector: 'app-people',
@@ -9,35 +12,44 @@ import {MessageService} from '../message.service';
     styleUrls: ['./people.component.css']
 })
 export class PeopleComponent implements OnInit {
+
     users: User[];
     user: User;
+    messages: Message[];
 
     constructor(private userService: UserService,
-                private messageService: MessageService) {
+                public messageService: MessageService,
+                private channelService: ChannelService,
+                private tokenStorage: TokenStorage) {
     }
 
     ngOnInit() {
-        // fetching all users on component initialization
+        // fetching list of all users on component initialization
         this.userService.getAllUsers().subscribe((data: User[]) => {
-            this.users = data;
-        });
-    }
-
-    // setting sender value for front-end
-    setSender(name: string) {
-        this.userService.setSender(name);
-        this.userService.getUserDetailsByName(name).subscribe(data => {
-            console.log(this.user = data);
-            this.messageService.setSender(this.user);
+            console.log(this.users = data);
         });
     }
 
     // setting receiver value for front-end
-    setReceiver(name: string) {
-        this.userService.setReceiver(name);
-        this.userService.getUserDetailsByName(name).subscribe(data => {
+    setReceiver(userId: string) {
+        if (this.tokenStorage.getChannel()) {
+            this.tokenStorage.removeChannel();
+        }
+        if (this.channelService.isChannelActive) {
+            this.channelService.isChannelActive = false;
+        }
+
+        this.messageService.resetUserNotification();
+        this.userService.getUserDetailsById(userId).subscribe(data => {
             console.log(this.user = data);
+            this.tokenStorage.saveReceiver(this.user.userId);
             this.messageService.setReceiver(this.user);
+            this.messageService.displayName = true;
+            this.messageService.getAllMessagesBySenderAndReceiver().subscribe(messages => {
+                console.log(this.messages = messages);
+                this.messageService.setMessages(this.messages);
+                this.messageService.setDisplayMessage(userId);
+            });
         });
     }
 }

@@ -1,0 +1,21 @@
+<div class="right-box">
+
+    <mat-sidenav-container class="example-container">
+        <mat-sidenav #sidenav position="end" mode="side" [(opened)]="opened" (opened)="events.push('open!')"
+                     (closed)="events.push('close!')"
+                     class="example-sidenav">
+            <div *ngFor="let user of users">
+                <mat-list-item>
+                    {{user.userName}}
+                    <span class="spacer"></span>
+                    <mat-divider></mat-divider>
+                </mat-list-item>
+            </div>
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <p>
+                <button mat-button (click)="(sidenav.toggle())&&(populateSidenav())">CHANNEL INFO</button>
+            </p>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

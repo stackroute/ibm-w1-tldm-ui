@@ -1,0 +1,27 @@
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.example-card {
+    width: auto;
+}
+
+.example-card mat-card-actions {
+    margin: auto;
+}
+
+.example-card button {
+    position: relative;
+    padding-left: 2px;
+    margin-inline-start: 150px;
+    margin-inline-end: 200px;
+}
+
+.footer {
+    height: 173px;
+
+}
+
+.footer h3 {
+    left: 100px;
+}

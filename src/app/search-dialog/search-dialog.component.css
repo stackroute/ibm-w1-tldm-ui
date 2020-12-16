@@ -1,0 +1,11 @@
+.example-form-field {
+    width: 800px;
+}
+
+.search-btn {
+    margin-left: 8px;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
